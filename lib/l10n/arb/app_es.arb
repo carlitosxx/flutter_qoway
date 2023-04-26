@@ -1,0 +1,11 @@
+{
+    "@@locale": "es",
+    "counterAppBarTitle": "Contador hola que ondas",
+    "@counterAppBarTitle": {
+        "description": "Texto mostrado en la AppBar de la página del contador"
+    },
+    "pruebitas":"pruebitas español",
+    "@pruebitas":{
+        "description": "pruebitas descripcion"
+    }
+}

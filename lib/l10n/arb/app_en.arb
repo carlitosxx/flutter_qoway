@@ -1,0 +1,11 @@
+{
+    "@@locale": "en",
+    "counterAppBarTitle": "Counter this is a test",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "pruebitas":"pruebitas",
+    "@pruebitas":{
+        "description": "pruebitas descripcion"
+    }
+}
