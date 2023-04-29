@@ -7,5 +7,26 @@
     "pruebitas":"pruebitas español",
     "@pruebitas":{
         "description": "pruebitas descripcion"
-    }
+    },
+    "titleLogin":"BIENVENIDO",
+    "@titleLogin":{
+        "description": "Titulo debajo del logo de la pagina de inicio de sesión"
+    },
+    "hintEmailLogin":"Ingrese su correo",
+    "@hintEmailLogin":{
+        "description": "pista para escribir el email"
+    },
+    "hintPasswordLogin":"Ingrese su clave",
+    "@hintPasswordLogin":{
+        "description": "pista para escribir la clave"
+    },
+    "textButtomLogin":"INGRESAR",
+    "@textButtomLogin":{
+        "description": "text on buttom sign in"
+    },
+    "textNoAccount":"¿No tienes una cuenta?.",
+    "textSignUp":"Registrate",
+    "labelCloseSnackBar":"Cerrar",
+    "errorFieldsEmptySnackBar":"Los campos estan vacios",
+    "errorNotFoundSnackBar":"No se encontro el usuario"
 }

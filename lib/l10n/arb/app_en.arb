@@ -7,5 +7,26 @@
     "pruebitas":"pruebitas",
     "@pruebitas":{
         "description": "pruebitas descripcion"
-    }
+    },
+    "titleLogin":"Welcome",
+    "@titleLogin":{
+        "description": "title below logo of login page"
+    },
+    "hintEmailLogin":"Enter you email",
+    "@hintEmailLogin":{
+        "description": "hint for email"
+    },
+    "hintPasswordLogin":"Enter you password",
+    "@hintPasswordLogin":{
+        "description": "hint for password"
+    },
+    "textButtomLogin":"SIGN IN",
+    "@textButtomLogin":{
+        "description": "text on buttom sign in "
+    },
+    "textNoAccount":"Dont have an account?.",
+    "textSignUp":"Sign up",
+    "labelCloseSnackBar":"Close",
+    "errorFieldsEmptySnackBar":"The fields are empty",
+    "errorNotFoundSnackBar":"The account was not found"
 }
