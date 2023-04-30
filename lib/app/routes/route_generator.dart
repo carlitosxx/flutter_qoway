@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:qoway/ui/currency/currency.page.dart';
 import 'package:qoway/ui/home/home_page.dart';
 import 'package:qoway/ui/login/login_page.dart';
+import 'package:qoway/ui/register/register.page.dart';
 import 'package:qoway/ui/splash/splash_page.dart';
 
 class RouteGenerator {
@@ -12,6 +14,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case '/home':
         return MaterialPageRoute(builder: (_) => const HomePage());
+      case '/register':
+        return MaterialPageRoute(builder: (_) => const RegisterPage());
+      case '/currency':
+        return MaterialPageRoute(builder: (_) => const CurrencyPage());
       default:
         return _errorRoute();
     }

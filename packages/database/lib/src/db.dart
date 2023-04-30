@@ -1,7 +1,8 @@
-import 'package:database/src/models/usuario.model.dart';
+// import 'package:database/src/models/usuario.model.dart';
 // ignore: depend_on_referenced_packages
+import 'package:database/src/models/divisa.model.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
+// import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 /// {@template database}
@@ -73,9 +74,9 @@ class Db {
   }
 
   static Future<Database> _openDB() async {
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'qoway.db');
-    print(path);
+    // final documentsDirectory = await getApplicationDocumentsDirectory();
+    // final path = join(documentsDirectory.path, 'qoway.db');
+
     return openDatabase(
       join(await getDatabasesPath(), 'qoway.db'),
       onCreate: _onCreate,
@@ -103,16 +104,32 @@ class Db {
     }
   }
 
-  /// OBTENER UN USUARIO CON CORREO Y CLAVE
+  /// Obtener usuario por correo y clave
   Future<List<Map<String, dynamic>>> obtenerUsuario(
       String email, String clave) async {
-    print('pase por aqui');
     final database = await _openDB();
     return database.query(
       'usuario',
       where: 'correo=? and clave=?',
       whereArgs: [email, clave],
       limit: 1,
+    );
+  }
+
+  ///OBTENER LISTA DE DIVISAS
+  static Future<List<Divisa>> divisas() async {
+    final database = await _openDB();
+    final List<Map<String, dynamic>> divisasMap =
+        await database.query('divisa');
+    return List.generate(
+      divisasMap.length,
+      (index) => Divisa(
+        id: divisasMap[index]['id'] as int,
+        descDivisa: divisasMap[index]['descDivisa'] as String,
+        cortoDivisa: divisasMap[index]['cortoDivisa'] as String,
+        simboloDivisa: divisasMap[index]['simboloDivisa'] as String,
+        ladoDivisa: divisasMap[index]['ladoDivisa'] as int,
+      ),
     );
   }
 }

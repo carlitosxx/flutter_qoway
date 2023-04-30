@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qoway/ui/login/views/login_phone.view.dart';
+import 'package:qoway/ui/register/views/register_phone.view.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +10,6 @@ class LoginPage extends StatelessWidget {
      * * (carlitosxx): Se necesita agregar la validacion de la plataforma y
      * * las vistas para telefono,tablet y escritorio 
     */
-    return LoginPhoneView();
+    return RegisterPhoneView();
   }
 }
