@@ -14,5 +14,13 @@ abstract class AuthRepository {
   LoginFuture getLogin(String email, String password);
 
   /// interfaz getRegister para que sea implementado en la capa "data"
-  GetRegisterFuture getRegister(String nombre, String email, String password);
+  GetRegisterFuture getRegister(
+    String name,
+    String email,
+    String password,
+    String descCurrency,
+    String descShortCurrency,
+    String simbolCurrency,
+    int sideCurrency,
+  );
 }

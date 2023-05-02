@@ -9,6 +9,9 @@ class HttpRequestFailure with _$HttpRequestFailure {
   /// (carlitosxx) falla de red
   factory HttpRequestFailure.network() = _Network;
 
+  /// (carlitosxx) ya existe el recurso
+  factory HttpRequestFailure.alreadyExist() = _AlreadyExist;
+
   /// (carlitosxx) solicitud no encontrado
   factory HttpRequestFailure.notFound() = _NotFound;
 

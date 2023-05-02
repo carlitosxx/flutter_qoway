@@ -21,5 +21,6 @@
     "errorFieldsEmptySnackBar":"Los campos estan vacios",
     "errorNotFoundSnackBar":"No se encontro el usuario",
     "sliverAppBarTitleCurrency":"Seleccione su divisa",
-    "errorEmptyFields":"No deje campos vacios"
+    "errorEmptyFields":"No deje campos vacios",
+    "errrPasswordNotMatch":"Las contraseñas no coinciden"
 }

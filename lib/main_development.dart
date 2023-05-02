@@ -5,6 +5,7 @@ import 'package:qoway/injection_container.dart' as di;
 import 'package:qoway/ui/currency/bloc/currency_bloc.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
+import 'package:qoway/ui/register/bloc/register/register_bloc.dart';
 
 void main() {
   bootstrap(() async {
@@ -18,7 +19,8 @@ void main() {
           create: (context) =>
               di.sl<CurrencyBloc>()..add(const LoadCurrencyEvent()),
         ),
-        BlocProvider(create: (context) => di.sl<CurrencySetBloc>())
+        BlocProvider(create: (context) => di.sl<CurrencySetBloc>()),
+        BlocProvider(create: (context) => di.sl<RegisterBloc>()),
       ],
       child: const App(),
     );

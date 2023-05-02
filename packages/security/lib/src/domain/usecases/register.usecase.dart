@@ -15,11 +15,23 @@ class RegisterUC {
   /// RegisterUC _registerUC;
   /// await _registerUC(name, email, password)
   /// eso hara que se ejecute la funcion de abajo.
-  GetRegisterFuture call(String name, String email, String password) async {
+  GetRegisterFuture call(
+    String name,
+    String email,
+    String password,
+    String descCurrency,
+    String descShortCurrency,
+    String simbolCurrency,
+    int sideCurrency,
+  ) async {
     return authRepository.getRegister(
       name,
       email,
       password,
+      descCurrency,
+      descShortCurrency,
+      simbolCurrency,
+      sideCurrency,
     );
   }
 }

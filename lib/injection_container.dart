@@ -6,19 +6,21 @@ import 'package:get_it/get_it.dart';
 import 'package:qoway/ui/currency/bloc/currency_bloc.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
+import 'package:qoway/ui/register/bloc/register/register_bloc.dart';
 import 'package:security/security.dart';
 
 final sl = GetIt.instance;
 Future<void> init() async {
   /// BLOC's
   sl.registerFactory(() => LoginBloc(sl()));
-  // ..registerFactory(() => LoginBloc(sl()))
+  sl.registerFactory(() => RegisterBloc(sl()));
   sl.registerFactory(() => CurrencyBloc(sl()));
   sl.registerFactory(CurrencySetBloc.new);
 
   /// Casos de Uso
   sl.registerLazySingleton(() => LoginUC(sl()));
   sl.registerLazySingleton(() => CurrencyUC(sl()));
+  sl.registerLazySingleton(() => RegisterUC(sl()));
 
   /// Repositorios
   sl.registerLazySingleton<AuthRepository>(

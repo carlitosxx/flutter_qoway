@@ -14,17 +14,20 @@ class Db {
   }
 
   static Future<void> _onCreate(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE actividad(
           id INTEGER
         );       
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         INSERT INTO actividad(id)
         values(0);
       ''');
 
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE usuario(
           id INTEGER PRIMARY KEY ,
           nombre TEXT,
@@ -35,7 +38,8 @@ class Db {
           simboloDivisa TEXT,
           ladoDivisa INTEGER);       
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE cuenta(
           id INTEGER PRIMARY KEY,
           descripcion TEXT,
@@ -43,7 +47,8 @@ class Db {
           idUsuario INTEGER,
           FOREIGN KEY(idUsuario) REFERENCES usuario(id));          
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE movimiento(
           id INTEGER PRIMARY KEY,
           tipoMovimiento INTEGER,
@@ -54,7 +59,8 @@ class Db {
           FOREIGN KEY(idCuenta) REFERENCES cuenta(id)
           );
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE divisa(
           id INTEGER PRIMARY KEY,
           descDivisa TEXT,
@@ -62,7 +68,8 @@ class Db {
           simboloDivisa TEXT,
           ladoDivisa INTEGER);
       ''');
-    await db.execute(r'''
+    await db.execute(
+        r'''
         INSERT INTO divisa(descDivisa,cortoDivisa,simboloDivisa,ladoDivisa)
         values
         ('Boliviano','BOB','Bs.',1),
@@ -90,15 +97,31 @@ class Db {
       databaseFactory.deleteDatabase(path);
 
   /// Insertar usuario
-  Future<int> insertUsuario(String name, String email, String clave) async {
+  Future<int> insertUser(
+    String name,
+    String email,
+    String clave,
+    String descDivisa,
+    String cortoDivisa,
+    String simboloDivisa,
+    int ladoDivisa,
+  ) async {
     try {
       final database = await _openDB();
-      final usuario = {'name': name, 'email': email, 'clave': clave};
+      final usuario = {
+        'nombre': name,
+        'correo': email,
+        'clave': clave,
+        'descDivisa': descDivisa,
+        'cortoDivisa': cortoDivisa,
+        'simboloDivisa': simboloDivisa,
+        'ladoDivisa': ladoDivisa,
+      };
       final idUsuario = await database.insert('usuario', usuario);
       return idUsuario;
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {
-        return 0;
+        return -1;
       }
       return 0;
     }

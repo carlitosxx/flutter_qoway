@@ -7,6 +7,7 @@ import 'package:core/core.dart';
 String mapFailureToString(HttpRequestFailure failure) {
   return failure.when(
     network: () => 'Hubo un problema de red',
+    alreadyExist: () => 'Ya existe el recurso',
     notFound: () => 'El recurso no fue encontrado',
     server: () => 'Hubo un problema en el servidor',
     unauthorized: () => 'No estas autorizado',

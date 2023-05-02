@@ -19,6 +19,7 @@ mixin _$HttpRequestFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() network,
+    required TResult Function() alreadyExist,
     required TResult Function() notFound,
     required TResult Function() server,
     required TResult Function() unauthorized,
@@ -28,6 +29,7 @@ mixin _$HttpRequestFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? network,
+    TResult? Function()? alreadyExist,
     TResult? Function()? notFound,
     TResult? Function()? server,
     TResult? Function()? unauthorized,
@@ -37,6 +39,7 @@ mixin _$HttpRequestFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? network,
+    TResult Function()? alreadyExist,
     TResult Function()? notFound,
     TResult Function()? server,
     TResult Function()? unauthorized,
@@ -47,6 +50,7 @@ mixin _$HttpRequestFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_Server value) server,
     required TResult Function(_Unauthorized value) unauthorized,
@@ -56,6 +60,7 @@ mixin _$HttpRequestFailure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_Server value)? server,
     TResult? Function(_Unauthorized value)? unauthorized,
@@ -65,6 +70,7 @@ mixin _$HttpRequestFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
     TResult Function(_NotFound value)? notFound,
     TResult Function(_Server value)? server,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -130,6 +136,7 @@ class _$_Network implements _Network {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() network,
+    required TResult Function() alreadyExist,
     required TResult Function() notFound,
     required TResult Function() server,
     required TResult Function() unauthorized,
@@ -142,6 +149,7 @@ class _$_Network implements _Network {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? network,
+    TResult? Function()? alreadyExist,
     TResult? Function()? notFound,
     TResult? Function()? server,
     TResult? Function()? unauthorized,
@@ -154,6 +162,7 @@ class _$_Network implements _Network {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? network,
+    TResult Function()? alreadyExist,
     TResult Function()? notFound,
     TResult Function()? server,
     TResult Function()? unauthorized,
@@ -170,6 +179,7 @@ class _$_Network implements _Network {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_Server value) server,
     required TResult Function(_Unauthorized value) unauthorized,
@@ -182,6 +192,7 @@ class _$_Network implements _Network {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_Server value)? server,
     TResult? Function(_Unauthorized value)? unauthorized,
@@ -194,6 +205,7 @@ class _$_Network implements _Network {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
     TResult Function(_NotFound value)? notFound,
     TResult Function(_Server value)? server,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -209,6 +221,132 @@ class _$_Network implements _Network {
 
 abstract class _Network implements HttpRequestFailure {
   factory _Network() = _$_Network;
+}
+
+/// @nodoc
+abstract class _$$_AlreadyExistCopyWith<$Res> {
+  factory _$$_AlreadyExistCopyWith(
+          _$_AlreadyExist value, $Res Function(_$_AlreadyExist) then) =
+      __$$_AlreadyExistCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_AlreadyExistCopyWithImpl<$Res>
+    extends _$HttpRequestFailureCopyWithImpl<$Res, _$_AlreadyExist>
+    implements _$$_AlreadyExistCopyWith<$Res> {
+  __$$_AlreadyExistCopyWithImpl(
+      _$_AlreadyExist _value, $Res Function(_$_AlreadyExist) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_AlreadyExist implements _AlreadyExist {
+  _$_AlreadyExist();
+
+  @override
+  String toString() {
+    return 'HttpRequestFailure.alreadyExist()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_AlreadyExist);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() network,
+    required TResult Function() alreadyExist,
+    required TResult Function() notFound,
+    required TResult Function() server,
+    required TResult Function() unauthorized,
+    required TResult Function() local,
+  }) {
+    return alreadyExist();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? network,
+    TResult? Function()? alreadyExist,
+    TResult? Function()? notFound,
+    TResult? Function()? server,
+    TResult? Function()? unauthorized,
+    TResult? Function()? local,
+  }) {
+    return alreadyExist?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? network,
+    TResult Function()? alreadyExist,
+    TResult Function()? notFound,
+    TResult Function()? server,
+    TResult Function()? unauthorized,
+    TResult Function()? local,
+    required TResult orElse(),
+  }) {
+    if (alreadyExist != null) {
+      return alreadyExist();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_Server value) server,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Local value) local,
+  }) {
+    return alreadyExist(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_Server value)? server,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Local value)? local,
+  }) {
+    return alreadyExist?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_Server value)? server,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Local value)? local,
+    required TResult orElse(),
+  }) {
+    if (alreadyExist != null) {
+      return alreadyExist(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AlreadyExist implements HttpRequestFailure {
+  factory _AlreadyExist() = _$_AlreadyExist;
 }
 
 /// @nodoc
@@ -250,6 +388,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() network,
+    required TResult Function() alreadyExist,
     required TResult Function() notFound,
     required TResult Function() server,
     required TResult Function() unauthorized,
@@ -262,6 +401,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? network,
+    TResult? Function()? alreadyExist,
     TResult? Function()? notFound,
     TResult? Function()? server,
     TResult? Function()? unauthorized,
@@ -274,6 +414,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? network,
+    TResult Function()? alreadyExist,
     TResult Function()? notFound,
     TResult Function()? server,
     TResult Function()? unauthorized,
@@ -290,6 +431,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_Server value) server,
     required TResult Function(_Unauthorized value) unauthorized,
@@ -302,6 +444,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_Server value)? server,
     TResult? Function(_Unauthorized value)? unauthorized,
@@ -314,6 +457,7 @@ class _$_NotFound implements _NotFound {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
     TResult Function(_NotFound value)? notFound,
     TResult Function(_Server value)? server,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -368,6 +512,7 @@ class _$_Server implements _Server {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() network,
+    required TResult Function() alreadyExist,
     required TResult Function() notFound,
     required TResult Function() server,
     required TResult Function() unauthorized,
@@ -380,6 +525,7 @@ class _$_Server implements _Server {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? network,
+    TResult? Function()? alreadyExist,
     TResult? Function()? notFound,
     TResult? Function()? server,
     TResult? Function()? unauthorized,
@@ -392,6 +538,7 @@ class _$_Server implements _Server {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? network,
+    TResult Function()? alreadyExist,
     TResult Function()? notFound,
     TResult Function()? server,
     TResult Function()? unauthorized,
@@ -408,6 +555,7 @@ class _$_Server implements _Server {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_Server value) server,
     required TResult Function(_Unauthorized value) unauthorized,
@@ -420,6 +568,7 @@ class _$_Server implements _Server {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_Server value)? server,
     TResult? Function(_Unauthorized value)? unauthorized,
@@ -432,6 +581,7 @@ class _$_Server implements _Server {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
     TResult Function(_NotFound value)? notFound,
     TResult Function(_Server value)? server,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -488,6 +638,7 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() network,
+    required TResult Function() alreadyExist,
     required TResult Function() notFound,
     required TResult Function() server,
     required TResult Function() unauthorized,
@@ -500,6 +651,7 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? network,
+    TResult? Function()? alreadyExist,
     TResult? Function()? notFound,
     TResult? Function()? server,
     TResult? Function()? unauthorized,
@@ -512,6 +664,7 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? network,
+    TResult Function()? alreadyExist,
     TResult Function()? notFound,
     TResult Function()? server,
     TResult Function()? unauthorized,
@@ -528,6 +681,7 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_Server value) server,
     required TResult Function(_Unauthorized value) unauthorized,
@@ -540,6 +694,7 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_Server value)? server,
     TResult? Function(_Unauthorized value)? unauthorized,
@@ -552,6 +707,7 @@ class _$_Unauthorized implements _Unauthorized {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
     TResult Function(_NotFound value)? notFound,
     TResult Function(_Server value)? server,
     TResult Function(_Unauthorized value)? unauthorized,
@@ -606,6 +762,7 @@ class _$_Local implements _Local {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() network,
+    required TResult Function() alreadyExist,
     required TResult Function() notFound,
     required TResult Function() server,
     required TResult Function() unauthorized,
@@ -618,6 +775,7 @@ class _$_Local implements _Local {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? network,
+    TResult? Function()? alreadyExist,
     TResult? Function()? notFound,
     TResult? Function()? server,
     TResult? Function()? unauthorized,
@@ -630,6 +788,7 @@ class _$_Local implements _Local {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? network,
+    TResult Function()? alreadyExist,
     TResult Function()? notFound,
     TResult Function()? server,
     TResult Function()? unauthorized,
@@ -646,6 +805,7 @@ class _$_Local implements _Local {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Network value) network,
+    required TResult Function(_AlreadyExist value) alreadyExist,
     required TResult Function(_NotFound value) notFound,
     required TResult Function(_Server value) server,
     required TResult Function(_Unauthorized value) unauthorized,
@@ -658,6 +818,7 @@ class _$_Local implements _Local {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Network value)? network,
+    TResult? Function(_AlreadyExist value)? alreadyExist,
     TResult? Function(_NotFound value)? notFound,
     TResult? Function(_Server value)? server,
     TResult? Function(_Unauthorized value)? unauthorized,
@@ -670,6 +831,7 @@ class _$_Local implements _Local {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Network value)? network,
+    TResult Function(_AlreadyExist value)? alreadyExist,
     TResult Function(_NotFound value)? notFound,
     TResult Function(_Server value)? server,
     TResult Function(_Unauthorized value)? unauthorized,
