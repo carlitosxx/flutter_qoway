@@ -1,6 +1,8 @@
 // import 'package:vgp_cliente/app/core/errors/http_request_failure.dart';
 
-import 'package:security/security.dart';
+// import 'package:security/security.dart';
+
+import 'package:core/core.dart';
 
 String mapFailureToString(HttpRequestFailure failure) {
   return failure.when(

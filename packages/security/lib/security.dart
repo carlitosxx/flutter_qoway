@@ -1,7 +1,6 @@
 /// Security package(login,register)
 library security;
 
-export 'src/core/errors/http_request_failure.dart';
 export 'src/data/datasources/local/login.datasource.dart';
 export 'src/data/datasources/local/register.datasource.dart';
 export 'src/data/repositories_impl/auth_repository.impl.dart';

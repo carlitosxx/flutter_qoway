@@ -117,19 +117,10 @@ class Db {
   }
 
   ///OBTENER LISTA DE DIVISAS
-  static Future<List<Divisa>> divisas() async {
+  Future<List<Map<String, dynamic>>> getCurrencies() async {
     final database = await _openDB();
     final List<Map<String, dynamic>> divisasMap =
         await database.query('divisa');
-    return List.generate(
-      divisasMap.length,
-      (index) => Divisa(
-        id: divisasMap[index]['id'] as int,
-        descDivisa: divisasMap[index]['descDivisa'] as String,
-        cortoDivisa: divisasMap[index]['cortoDivisa'] as String,
-        simboloDivisa: divisasMap[index]['simboloDivisa'] as String,
-        ladoDivisa: divisasMap[index]['ladoDivisa'] as int,
-      ),
-    );
+    return divisasMap;
   }
 }

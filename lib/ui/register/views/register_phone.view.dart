@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/widgets/button.dart';
 import 'package:qoway/ui/common/widgets/field.dart';
 import 'package:qoway/ui/common/widgets/logo.dart';
+
+import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
 
 class RegisterPhoneView extends StatelessWidget {
   RegisterPhoneView({super.key});
@@ -10,9 +15,16 @@ class RegisterPhoneView extends StatelessWidget {
   final email = TextEditingController();
   final password = TextEditingController();
   final repassword = TextEditingController();
-  final currency = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    var controllerCurrency = <String, dynamic>{
+      'id': 0,
+      'descCurrency': '',
+      'descShortCurrency': '',
+      'simbolCurrency': '',
+      'sideCurrency': 1
+    };
     final l10n = context.l10n;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
@@ -88,15 +100,39 @@ class RegisterPhoneView extends StatelessWidget {
                           height: 50,
                           padding: const EdgeInsets.symmetric(horizontal: 50),
                           child: Center(
-                            child: Text(
-                              l10n.hintCurrencyRegister,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onBackground
-                                    .withOpacity(0.3),
-                              ),
+                            child:
+                                BlocBuilder<CurrencySetBloc, CurrencySetState>(
+                              builder: (context, state) {
+                                if (state is CurrencySetedState) {
+                                  controllerCurrency = {
+                                    'id': state.id,
+                                    'descCurrency': state.descCurrency,
+                                    'descShortCurrency':
+                                        state.descShortCurrency,
+                                    'simbolCurrency': state.simbolCurrency,
+                                    'sideCurrency': state.sideCurrency
+                                  };
+                                  return Text(
+                                    state.descCurrency,
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onBackground,
+                                    ),
+                                  );
+                                }
+                                return Text(
+                                  l10n.hintCurrencyRegister,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground
+                                        .withOpacity(0.3),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -108,7 +144,34 @@ class RegisterPhoneView extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(30, 7, 30, 0),
                       width: double.infinity,
                       child: ButtonWidget(
-                        onButtonClick: null,
+                        onButtonClick: () {
+                          if (name.text.isEmpty ||
+                              email.text.isEmpty ||
+                              password.text.isEmpty ||
+                              repassword.text.isEmpty ||
+                              controllerCurrency['id'] as int == 0) {
+                            final snackBar = SnackBar(
+                              content: Text(l10n.errorEmptyFields),
+                              action: SnackBarAction(
+                                label: l10n.labelCloseSnackBar,
+                                onPressed: () {},
+                              ),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          } else {
+                            // final snackBar = SnackBar(
+                            //   content: Text(
+                            //       'ahora toca validar si el correo esta registrado'),
+                            //   action: SnackBarAction(
+                            //     label: l10n.labelCloseSnackBar,
+                            //     onPressed: () {},
+                            //   ),
+                            // );
+                            // ScaffoldMessenger.of(context)
+                            //     .showSnackBar(snackBar);
+                          }
+                        },
                         text: l10n.textButtonRegister,
                       ),
                     ),

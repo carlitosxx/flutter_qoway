@@ -1,5 +1,4 @@
-import 'package:security/src/core/either/either.dart';
-import 'package:security/src/core/errors/http_request_failure.dart';
+import 'package:core/core.dart';
 
 /// tipo de dato, puede retornar htttprequestFailure o Lista de map string
 /// dynamic

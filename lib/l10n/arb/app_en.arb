@@ -20,5 +20,6 @@
     "labelCloseSnackBar":"Close",
     "errorFieldsEmptySnackBar":"The fields are empty",
     "errorNotFoundSnackBar":"The account was not found",
-    "sliverAppBarTitleCurrency":"Select your currency"
+    "sliverAppBarTitleCurrency":"Select your currency",
+    "errorEmptyFields":"Do not leave empty fields"
 }

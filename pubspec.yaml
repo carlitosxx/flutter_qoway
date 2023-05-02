@@ -8,6 +8,10 @@ environment:
 
 dependencies:
   bloc: ^8.1.1
+  core:
+    path: "./packages/core"
+  currency:
+    path: "./packages/currency"
   database:
     path: "./packages/database"
   equatable: ^2.0.5
@@ -29,7 +33,6 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^3.1.0
-
 flutter:
   uses-material-design: true
   generate: true
