@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/widgets/button.dart';
 import 'package:qoway/ui/common/widgets/field.dart';
 import 'package:qoway/ui/common/widgets/logo.dart';
-
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
 import 'package:qoway/ui/register/bloc/register/register_bloc.dart';
 
@@ -105,14 +102,6 @@ class RegisterPhoneView extends StatelessWidget {
                                 BlocBuilder<CurrencySetBloc, CurrencySetState>(
                               builder: (context, state) {
                                 if (state is CurrencySetedState) {
-                                  // controllerCurrency = {
-                                  //   'id': state.id,
-                                  //   'descCurrency': state.descCurrency,
-                                  //   'descShortCurrency':
-                                  //       state.descShortCurrency,
-                                  //   'simbolCurrency': state.simbolCurrency,
-                                  //   'sideCurrency': state.sideCurrency
-                                  // };
                                   return Text(
                                     state.descCurrency,
                                     style: TextStyle(
@@ -216,14 +205,15 @@ class ConsumerRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('repinto');
     return BlocConsumer<RegisterBloc, RegisterState>(
       listener: (context, state) {
-        log('listemner,estado:$state');
         state.whenOrNull(
           //* ESTADO CARGADO
           loaded: (id) {
-            Navigator.of(context).pushReplacementNamed('/home');
+            Navigator.of(context).pushNamedAndRemoveUntil(
+              '/home',
+              (route) => false,
+            );
           },
           //* ESTADO ERROR
           error: (error) {
@@ -239,62 +229,14 @@ class ConsumerRegister extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        log('pase por aqui: $state');
         return state.maybeWhen(
           orElse: () => button(context),
           //* BUILDER:ESTADO INICIAL
 
-          initial: () {
-            return button(context);
-            // ButtonWidget(
-            //   onButtonClick: () {
-            //     if (name.text.isEmpty ||
-            //         email.text.isEmpty ||
-            //         password.text.isEmpty ||
-            //         repassword.text.isEmpty ||
-            //         controllerCurrency['id'] as int == 0) {
-            //       log(password.text);
-            //       log(name.text);
-            //       log((controllerCurrency['id'] as int).toString());
-            //       final snackBar = SnackBar(
-            //         content: Text(l10n.errorEmptyFields),
-            //         action: SnackBarAction(
-            //           label: l10n.labelCloseSnackBar,
-            //           onPressed: () {},
-            //         ),
-            //       );
-            //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            //     } else {
-            //       if (password.text == repassword.text) {
-            //         log(password.text);
-            //         context.read<RegisterBloc>().add(
-            //               RegisterEvent.load(
-            //                 name.text,
-            //                 email.text,
-            //                 password.text,
-            //                 controllerCurrency['descCurrency'] as String,
-            //                 controllerCurrency['descShortCurrency'] as String,
-            //                 controllerCurrency['simbolCurrency'] as String,
-            //                 controllerCurrency['sideCurrency'] as int,
-            //               ),
-            //             );
-            //       } else {
-            //         log(name.text);
-            //         final snackBar = SnackBar(
-            //           content: Text(l10n.errrPasswordNotMatch),
-            //           action: SnackBarAction(
-            //             label: l10n.labelCloseSnackBar,
-            //             onPressed: () {},
-            //           ),
-            //         );
-            //         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            //       }
-            //     }
-            //   },
-            //   text: l10n.textButtonRegister,
-            // );
-          },
-          //* BUILDER:LOADING STATE
+          // initial: () {
+          //   return button(context);
+          // },
+          //* BUILDER:ESTADO CARGANDO
           loading: () {
             return const ButtonWidget(
               onButtonClick: null,
@@ -302,52 +244,10 @@ class ConsumerRegister extends StatelessWidget {
             );
           },
 
-          //* BUILDER:ERROR STATE
-          error: (error) {
-            return button(context);
-            // ButtonWidget(
-            //   onButtonClick: () {
-            //     if (name.text.isEmpty ||
-            //         email.text.isEmpty ||
-            //         password.text.isEmpty ||
-            //         repassword.text.isEmpty ||
-            //         controllerCurrency['id'] as int == 0) {
-            //       final snackBar = SnackBar(
-            //         content: Text(l10n.errorEmptyFields),
-            //         action: SnackBarAction(
-            //           label: l10n.labelCloseSnackBar,
-            //           onPressed: () {},
-            //         ),
-            //       );
-            //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            //     } else {
-            //       if (password.text == repassword.text) {
-            //         context.read<RegisterBloc>().add(
-            //               RegisterEvent.load(
-            //                 name.text,
-            //                 email.text,
-            //                 password.text,
-            //                 controllerCurrency['descCurrency'] as String,
-            //                 controllerCurrency['descShortCurrency'] as String,
-            //                 controllerCurrency['simbolCurrency'] as String,
-            //                 controllerCurrency['sideCurrency'] as int,
-            //               ),
-            //             );
-            //       } else {
-            //         final snackBar = SnackBar(
-            //           content: Text(l10n.errrPasswordNotMatch),
-            //           action: SnackBarAction(
-            //             label: l10n.labelCloseSnackBar,
-            //             onPressed: () {},
-            //           ),
-            //         );
-            //         ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            //       }
-            //     }
-            //   },
-            //   text: l10n.textButtonRegister,
-            // );
-          },
+          //* BUILDER:ESTADO DE ERROR
+          // error: (error) {
+          //   return button(context);
+          // },
         );
       },
     );
@@ -361,9 +261,6 @@ class ConsumerRegister extends StatelessWidget {
             password.text.isEmpty ||
             repassword.text.isEmpty ||
             controllerCurrency['id'] as int == 0) {
-          log(password.text);
-          log(name.text);
-          log((controllerCurrency['id'] as int).toString());
           final snackBar = SnackBar(
             content: Text(l10n.errorEmptyFields),
             action: SnackBarAction(
@@ -374,7 +271,6 @@ class ConsumerRegister extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else {
           if (password.text == repassword.text) {
-            log(password.text);
             context.read<RegisterBloc>().add(
                   RegisterEvent.load(
                     name.text,
@@ -387,7 +283,6 @@ class ConsumerRegister extends StatelessWidget {
                   ),
                 );
           } else {
-            log(name.text);
             final snackBar = SnackBar(
               content: Text(l10n.errrPasswordNotMatch),
               action: SnackBarAction(
