@@ -22,5 +22,7 @@
     "errorNotFoundSnackBar":"The account was not found",
     "sliverAppBarTitleCurrency":"Select your currency",
     "errorEmptyFields":"Do not leave empty fields",
-    "errrPasswordNotMatch":"Passwords do not match"
+    "errrPasswordNotMatch":"Passwords do not match",
+    "textAccountsDrawer":"Accounts",
+    "logout":"Logout"
 }

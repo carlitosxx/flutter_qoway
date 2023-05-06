@@ -37,13 +37,13 @@ class _FieldWidgetState extends State<FieldWidget> {
               right: 15,
               top: 12,
               child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isOpen = !isOpen;
-                    });
-                  },
-                  child:
-                      Icon(isOpen ? Icons.visibility : Icons.visibility_off)),
+                onTap: () {
+                  setState(() {
+                    isOpen = !isOpen;
+                  });
+                },
+                child: Icon(isOpen ? Icons.visibility : Icons.visibility_off),
+              ),
             ),
           ),
           Container(

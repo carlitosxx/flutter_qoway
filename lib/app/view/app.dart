@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: '/login',
+      initialRoute: '/home',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

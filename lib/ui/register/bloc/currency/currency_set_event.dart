@@ -8,8 +8,13 @@ abstract class CurrencyEvent extends Equatable {
 }
 
 class CurrencyLoadedEvent extends CurrencyEvent {
-  const CurrencyLoadedEvent(this.id, this.descCurrency, this.descShortCurrency,
-      this.simbolCurrency, this.sideCurrency);
+  const CurrencyLoadedEvent(
+    this.id,
+    this.descCurrency,
+    this.descShortCurrency,
+    this.simbolCurrency,
+    this.sideCurrency,
+  );
   final int id;
   final String descCurrency;
   final String descShortCurrency;

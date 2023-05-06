@@ -10,6 +10,6 @@ class HomePage extends StatelessWidget {
      * * (carlitosxx): Se necesita agregar la validacion de la plataforma y
      * * las vistas para telefono,tablet y escritorio 
     */
-    return const HomeViewPhone();
+    return HomeViewPhone();
   }
 }

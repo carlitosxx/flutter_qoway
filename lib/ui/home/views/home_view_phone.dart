@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:qoway/ui/home/widgets/my_appbar.dart';
+import 'package:qoway/ui/home/widgets/my_drawer.dart';
 
 class HomeViewPhone extends StatelessWidget {
-  const HomeViewPhone({super.key});
-
+  HomeViewPhone({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          primaryFocus?.unfocus();
+        },
+        child: SafeArea(
+          child: Scaffold(
+            key: _scaffoldKey,
+            drawer: const MyDrawer(),
+            body: CustomScrollView(
+              slivers: [
+                const MyAppBar(),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => const Text('holis esto es una lista '),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

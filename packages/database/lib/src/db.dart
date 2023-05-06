@@ -1,7 +1,7 @@
 // import 'package:database/src/models/usuario.model.dart';
 // ignore: depend_on_referenced_packages
-import 'package:database/src/models/divisa.model.dart';
 import 'package:path/path.dart';
+// import 'package:database/src/models/divisa.model.dart';
 // import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -129,7 +129,9 @@ class Db {
 
   /// Obtener usuario por correo y clave
   Future<List<Map<String, dynamic>>> obtenerUsuario(
-      String email, String clave) async {
+    String email,
+    String clave,
+  ) async {
     final database = await _openDB();
     return database.query(
       'usuario',
