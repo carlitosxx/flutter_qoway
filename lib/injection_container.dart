@@ -2,11 +2,13 @@
 
 import 'package:currency/currency.dart';
 import 'package:database/database.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:qoway/ui/currency/bloc/currency_bloc.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
 import 'package:qoway/ui/register/bloc/register/register_bloc.dart';
+import 'package:qoway/ui/splash/bloc/bloc/user_id_bloc.dart';
 import 'package:security/security.dart';
 
 final sl = GetIt.instance;
@@ -16,15 +18,17 @@ Future<void> init() async {
   sl.registerFactory(() => RegisterBloc(sl()));
   sl.registerFactory(() => CurrencyBloc(sl()));
   sl.registerFactory(CurrencySetBloc.new);
+  sl.registerFactory(() => UserIdBloc(sl()));
 
   /// Casos de Uso
   sl.registerLazySingleton(() => LoginUC(sl()));
   sl.registerLazySingleton(() => CurrencyUC(sl()));
   sl.registerLazySingleton(() => RegisterUC(sl()));
+  sl.registerLazySingleton(() => GetUserIdUC(sl()));
 
   /// Repositorios
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(sl(), sl()),
+    () => AuthRepositoryImpl(sl(), sl(), sl()),
   );
   sl.registerLazySingleton<CurrencyRepository>(
     () => CurrencyRepositoryImpl(sl()),
@@ -35,6 +39,9 @@ Future<void> init() async {
   sl.registerLazySingleton<RegisterDataSource>(
     () => RegisterDataSourceImpl(sl()),
   );
+  sl.registerLazySingleton<SecureStoreDataSource>(
+    () => SecureStoreDataSourceImpl(sl()),
+  );
 
   sl.registerLazySingleton<CurrencyDataSource>(
     () => CurrencyDataSourceImpl(
@@ -42,6 +49,7 @@ Future<void> init() async {
     ),
   );
 
-  /// Librerias
+  /// Librerias externas
+  sl.registerLazySingleton(() => const FlutterSecureStorage());
   sl.registerLazySingleton(Db.new);
 }

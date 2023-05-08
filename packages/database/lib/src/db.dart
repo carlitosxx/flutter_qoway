@@ -1,5 +1,7 @@
 // import 'package:database/src/models/usuario.model.dart';
 // ignore: depend_on_referenced_packages
+import 'package:database/src/models/cuenta.model.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 // import 'package:database/src/models/divisa.model.dart';
 // import 'package:path_provider/path_provider.dart';
@@ -118,6 +120,12 @@ class Db {
         'ladoDivisa': ladoDivisa,
       };
       final idUsuario = await database.insert('usuario', usuario);
+      final cuenta = Cuenta(
+        descripcion: 'Main',
+        estaIncluido: 1,
+        idUsuario: idUsuario,
+      );
+      await database.insert('cuenta', cuenta.toMap());
       return idUsuario;
     } on DatabaseException catch (e) {
       if (e.isUniqueConstraintError()) {

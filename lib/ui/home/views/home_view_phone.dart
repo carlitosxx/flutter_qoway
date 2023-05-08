@@ -3,8 +3,9 @@ import 'package:qoway/ui/home/widgets/my_appbar.dart';
 import 'package:qoway/ui/home/widgets/my_drawer.dart';
 
 class HomeViewPhone extends StatelessWidget {
-  HomeViewPhone({super.key});
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  HomeViewPhone({super.key, required this.userId});
+  final String userId;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -16,14 +17,14 @@ class HomeViewPhone extends StatelessWidget {
         },
         child: SafeArea(
           child: Scaffold(
-            key: _scaffoldKey,
+            key: scaffoldKey,
             drawer: const MyDrawer(),
             body: CustomScrollView(
               slivers: [
                 const MyAppBar(),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (context, index) => const Text('holis esto es una lista '),
+                    (context, index) => Text(userId),
                   ),
                 )
               ],

@@ -18,5 +18,6 @@ dependencies:
     path: "../core"
   database:
     path: "../database"
+  flutter_secure_storage: ^7.0.1
   freezed_annotation: ^2.2.0
   sqflite: ^2.2.7

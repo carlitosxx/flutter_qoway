@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatefulWidget {
-  const MyAppBar({super.key});
+  const MyAppBar({
+    super.key,
+  });
 
   @override
   State<MyAppBar> createState() => _MyAppBarState();
@@ -43,7 +45,8 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final newValue = maxExtend - shrinkOffset;
     final delta = newValue / maxExtend;
-    final teta = shrinkOffset / maxExtend;
+    // final teta = shrinkOffset / maxExtend;
+
     return SizedBox.expand(
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -58,61 +61,62 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             Positioned(
               top: 0,
               left: 0,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.15,
-                child: FractionallySizedBox(
-                  widthFactor: 1,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: minExtend,
-                          child: const Icon(Icons.menu),
+              child: GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  child: FractionallySizedBox(
+                    widthFactor: 1,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: minExtend,
+                            child: const Icon(Icons.menu),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-            // Positioned(
-            //   top: 0,
-            //   right: 0,
-            //   child: SizedBox(
-            //     width: MediaQuery.of(context).size.width,
-            //     child: FractionallySizedBox(
-            //       widthFactor: 1,
-            //       child: Expanded(
-            //         child: Container(
-            //           // color: Colors.red,
-            //           height: minExtend,
-            //           child: Row(
-            //             mainAxisAlignment: MainAxisAlignment.center,
-            //             children: [
-            //               Text(title),
-            //               const Icon(Icons.arrow_drop_down)
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
+
+            Positioned(
+              top: 0,
+              right: 0,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: FractionallySizedBox(
+                  widthFactor: 1,
+                  child: SizedBox(
+                    height: minExtend,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(title),
+                        const Icon(Icons.arrow_drop_down)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               bottom: 0,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: FractionallySizedBox(
                   widthFactor: 1,
-                  child: Expanded(
-                    child: SizedBox(
-                      height: minExtend,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(subTitle),
-                        ],
-                      ),
+                  child: SizedBox(
+                    height: minExtend,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(subTitle),
+                      ],
                     ),
                   ),
                 ),

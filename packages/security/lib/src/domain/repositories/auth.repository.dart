@@ -23,4 +23,7 @@ abstract class AuthRepository {
     String simbolCurrency,
     int sideCurrency,
   );
+
+  /// interfaz getUserIdOfSecureStore()
+  Future<String> getUserIdOfSecureStore(String keySecureStore);
 }

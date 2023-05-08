@@ -7,13 +7,20 @@ import 'package:qoway/ui/splash/splash_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
     switch (settings.name) {
       case '/splash':
         return MaterialPageRoute(builder: (_) => const SplashPage());
       case '/login':
         return MaterialPageRoute(builder: (_) => const LoginPage());
       case '/home':
-        return MaterialPageRoute(builder: (_) => const HomePage());
+        if (args is String) {
+          return MaterialPageRoute(
+              builder: (_) => HomePage(
+                    userId: args,
+                  ));
+        }
+        return _errorRoute();
       case '/register':
         return MaterialPageRoute(builder: (_) => const RegisterPage());
       case '/currency':

@@ -3,7 +3,9 @@ import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/widgets/logo.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  const MyDrawer({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

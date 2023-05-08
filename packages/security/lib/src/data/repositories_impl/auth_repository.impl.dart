@@ -1,17 +1,25 @@
 import 'package:security/src/data/datasources/local/login.datasource.dart';
 import 'package:security/src/data/datasources/local/register.datasource.dart';
+import 'package:security/src/data/datasources/local/secure_store.datasource.dart';
 import 'package:security/src/domain/repositories/auth.repository.dart';
 
 /// implementacion del repositorio de autenticación
 class AuthRepositoryImpl implements AuthRepository {
   /// constructor
-  AuthRepositoryImpl(this._loginDataSource, this._registerDataSource);
+  AuthRepositoryImpl(
+    this._loginDataSource,
+    this._registerDataSource,
+    this._secureStoreDataSource,
+  );
 
-  /// propiedad login
+  /// propiedad DataSource login
   final LoginDataSource _loginDataSource;
 
-  /// propiedad register
+  /// propiedad DataSource register
   final RegisterDataSource _registerDataSource;
+
+  /// propiedad DataSource SecureStore
+  final SecureStoreDataSource _secureStoreDataSource;
 
   @override
   LoginFuture getLogin(String email, String password) {
@@ -27,8 +35,8 @@ class AuthRepositoryImpl implements AuthRepository {
     String descShortCurrency,
     String simbolCurrency,
     int sideCurrency,
-  ) {
-    return _registerDataSource.registerUser(
+  ) async {
+    final responseFuture = _registerDataSource.registerUser(
       name,
       email,
       password,
@@ -37,5 +45,16 @@ class AuthRepositoryImpl implements AuthRepository {
       simbolCurrency,
       sideCurrency,
     );
+    final response = await responseFuture;
+    response.whenOrNull(
+      right: (value) =>
+          _secureStoreDataSource.saveSecureStore('cuenta', value.toString()),
+    );
+    return responseFuture;
+  }
+
+  @override
+  Future<String> getUserIdOfSecureStore(String keySecureStore) {
+    return _secureStoreDataSource.getSecureStore(keySecureStore);
   }
 }
