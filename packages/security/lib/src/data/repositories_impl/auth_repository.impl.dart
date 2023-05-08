@@ -22,8 +22,16 @@ class AuthRepositoryImpl implements AuthRepository {
   final SecureStoreDataSource _secureStoreDataSource;
 
   @override
-  LoginFuture getLogin(String email, String password) {
-    return _loginDataSource.getLogin(email, password);
+  LoginFuture getLogin(String email, String password) async {
+    final responseFuture = _loginDataSource.getLogin(email, password);
+    final response = await responseFuture;
+    response.whenOrNull(
+      right: (value) => _secureStoreDataSource.saveSecureStore(
+        'cuenta',
+        value[0]['id'].toString(),
+      ),
+    );
+    return responseFuture;
   }
 
   @override
@@ -54,7 +62,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<String> getUserIdOfSecureStore(String keySecureStore) {
-    return _secureStoreDataSource.getSecureStore(keySecureStore);
+  Future<String> getUserIdOfSecureStore(String keySecureStore) async {
+    final responseFuture =
+        _secureStoreDataSource.getSecureStore(keySecureStore);
+    final response = await responseFuture;
+    if (response != '') {
+      _secureStoreDataSource.saveSecureStore('cuenta', response);
+    }
+    return responseFuture;
+  }
+
+  @override
+  Future<void> deleteValueFromSecureStore(String keySecureStore) {
+    return _secureStoreDataSource.deleteValueFromSecureStore(keySecureStore);
   }
 }

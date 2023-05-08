@@ -23,7 +23,7 @@ class RegisterUC {
     String descShortCurrency,
     String simbolCurrency,
     int sideCurrency,
-  ) async {
+  ) {
     return authRepository.getRegister(
       name,
       email,

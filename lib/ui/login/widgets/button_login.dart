@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/l10n/l10n.dart';
@@ -105,9 +107,11 @@ class CustomButtoWidget extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is LoginLoadedState) {
+          log(state.usuario[0]['id'].toString());
           Navigator.of(context).pushNamedAndRemoveUntil(
             '/home',
             (route) => false,
+            arguments: state.usuario[0]['id'].toString(),
           );
         }
         if (state is LoginErrorState) {

@@ -25,6 +25,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CurrencyUC(sl()));
   sl.registerLazySingleton(() => RegisterUC(sl()));
   sl.registerLazySingleton(() => GetUserIdUC(sl()));
+  sl.registerLazySingleton(() => DeleteValueFromSecureStore(sl()));
 
   /// Repositorios
   sl.registerLazySingleton<AuthRepository>(

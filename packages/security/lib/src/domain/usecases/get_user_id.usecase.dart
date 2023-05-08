@@ -9,7 +9,7 @@ class GetUserIdUC {
   final AuthRepository authRepository;
 
   /// llamada automatica
-  Future<String> call(String keySecureStore) async {
+  Future<String> call(String keySecureStore) {
     return authRepository.getUserIdOfSecureStore(keySecureStore);
   }
 }

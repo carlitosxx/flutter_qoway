@@ -10,7 +10,7 @@ class UserIdBloc extends Bloc<UserIdEvent, UserIdState> {
     on<UserIdLoad>((event, emit) async {
       emit(const UserIdState.loading());
       final userId = await _getUserIdUC('cuenta');
-      if (userId == '0') {
+      if (userId == '0' || userId == '') {
         emit(const UserIdState.error());
       } else {
         emit(UserIdState.loaded(userId));

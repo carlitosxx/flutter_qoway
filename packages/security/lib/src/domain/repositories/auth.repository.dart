@@ -24,6 +24,9 @@ abstract class AuthRepository {
     int sideCurrency,
   );
 
-  /// interfaz getUserIdOfSecureStore()
+  /// interfaz
   Future<String> getUserIdOfSecureStore(String keySecureStore);
+
+  /// interfaz
+  Future<void> deleteValueFromSecureStore(String keySecureStore);
 }

@@ -19,7 +19,9 @@ void main() {
         ),
         BlocProvider(create: (_) => di.sl<CurrencySetBloc>()),
         BlocProvider(create: (_) => di.sl<RegisterBloc>()),
-        BlocProvider(create: (_) => di.sl<UserIdBloc>())
+        BlocProvider(
+          create: (_) => di.sl<UserIdBloc>()..add(const UserIdLoad()),
+        )
       ],
       child: const App(),
     );

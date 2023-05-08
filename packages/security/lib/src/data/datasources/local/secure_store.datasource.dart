@@ -7,6 +7,9 @@ abstract class SecureStoreDataSource {
 
   /// obtener datos del secureStore
   Future<String> getSecureStore(String keySecureStore);
+
+  /// eliminat datos del secureStore
+  Future<void> deleteValueFromSecureStore(String keySecureStore);
 }
 
 /// implementacion del datasource
@@ -25,5 +28,10 @@ class SecureStoreDataSourceImpl implements SecureStoreDataSource {
   @override
   Future<String> getSecureStore(String key) async {
     return await secureStorage.read(key: key) ?? '';
+  }
+
+  @override
+  Future<void> deleteValueFromSecureStore(String keySecureStore) {
+    return secureStorage.delete(key: keySecureStore);
   }
 }
