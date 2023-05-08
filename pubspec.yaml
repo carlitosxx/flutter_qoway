@@ -23,7 +23,7 @@ dependencies:
   flutter_secure_storage: ^7.0.1
   flutter_svg: ^1.1.6
   freezed_annotation: ^2.2.0
-  get_it: ^7.2.0
+  get_it: ^7.5.0
   google_fonts: ^4.0.3
   intl: ^0.17.0
   material_color_utilities: ^0.2.0
