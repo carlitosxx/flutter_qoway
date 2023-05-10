@@ -1,6 +1,8 @@
-// import 'package:database/src/models/usuario.model.dart';
 // ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
 import 'package:database/src/models/cuenta.model.dart';
+import 'package:database/src/models/cuentas.model.dart';
+// import 'package:database/src/models/movimiento.model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 // import 'package:database/src/models/divisa.model.dart';
@@ -155,5 +157,82 @@ class Db {
     final List<Map<String, dynamic>> divisasMap =
         await database.query('divisa');
     return divisasMap;
+  }
+
+  /// Obtener Lista de Cuentas
+  Future<List<Cuentas>> getAccounts(int id) async {
+    final database = await _openDB();
+
+    final response = await database.rawQuery(
+      '''
+      SELECT 
+      cuenta.id as idCuenta,
+      cuenta.descripcion,
+      cuenta.estaIncluido,
+      movimiento.id AS idMovimiento,
+      movimiento.tipoMovimiento,
+      movimiento.monto,
+      movimiento.fecha,
+      movimiento.comentario 
+      FROM cuenta
+         LEFT JOIN movimiento ON movimiento.idCuenta=cuenta.id
+         WHERE "idUsuario"=? ORDER BY cuenta.id
+      ''',
+      [id],
+    );
+
+    final List<Map<String, dynamic>> nuevoAgrupado =
+        groupBy(response, (p0) => p0['idCuenta']).entries.map(
+      (entry) {
+        final idCuenta = entry.key;
+        final movimientos = entry.value
+            .map(
+              (obj) {
+                if (obj['idMovimiento'] != null) {
+                  return {
+                    'idMovimiento': obj['idMovimiento'],
+                    'tipoMovimiento': obj['tipoMovimiento'],
+                    'monto': obj['monto'],
+                    'fecha': obj['fecha'],
+                    'comentario': obj['comentario']
+                  };
+                }
+              },
+            )
+            .where((element) => element != null)
+            .toList();
+        return {
+          'id': idCuenta,
+          'descripcion': entry.value.first['descripcion'],
+          'estaIncluido': entry.value.first['estaIncluido'],
+          'movimientos': movimientos
+        };
+      },
+    ).toList();
+
+    final lista = <Cuentas>[];
+    for (final element in nuevoAgrupado) {
+      lista.add(Cuentas.fromMap(element));
+    }
+    // print(lista);
+
+    // final listaCuenta = [
+    //   Cuentas(
+    //     id: 1,
+    //     descripcion: 'descripcion',
+    //     estaIncluido: 1,
+    //     idUsuario: 1,
+    //     movimientos: [
+    //       Movimiento(
+    //         id: 1,
+    //         tipoMovimiento: 1,
+    //         monto: 12.2,
+    //         fecha: 1683507880,
+    //         comentario: 'comentario',
+    //       ),
+    //     ],
+    //   )
+    // ];
+    return lista;
   }
 }

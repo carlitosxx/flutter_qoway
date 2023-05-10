@@ -20,7 +20,6 @@ class SplashView extends StatelessWidget {
             (route) => false,
           ),
           loaded: (value) => {
-            log('pase por aqui'),
             Navigator.of(context).pushNamedAndRemoveUntil(
               '/home',
               (route) => false,

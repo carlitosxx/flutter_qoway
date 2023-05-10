@@ -8,6 +8,9 @@ abstract class CurrencyDataSource {
   /// metodo
   Future<Either<HttpRequestFailure, List<Map<String, dynamic>>>>
       getCurrencies();
+
+  /// metodo
+  Future<Either<HttpRequestFailure, List<Cuentas>>> getAccounts(int idUser);
 }
 
 /// implementacion del datasource
@@ -23,6 +26,21 @@ class CurrencyDataSourceImpl implements CurrencyDataSource {
       getCurrencies() async {
     try {
       final response = await sqlite.getCurrencies();
+      if (response.isNotEmpty) {
+        return Either.right(response);
+      }
+      return Either.left(HttpRequestFailure.notFound());
+    } catch (e) {
+      return Either.left(HttpRequestFailure.local());
+    }
+  }
+
+  @override
+  Future<Either<HttpRequestFailure, List<Cuentas>>> getAccounts(
+    int idUser,
+  ) async {
+    try {
+      final response = await sqlite.getAccounts(idUser);
       if (response.isNotEmpty) {
         return Either.right(response);
       }

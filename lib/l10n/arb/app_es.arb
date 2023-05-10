@@ -24,5 +24,9 @@
     "errorEmptyFields":"No deje campos vacios",
     "errrPasswordNotMatch":"Las contraseñas no coinciden",
     "textAccountsDrawer":"Cuentas",
-    "logout":"Salir"
+    "logout":"Salir",
+    "addTransaction":"Agregar transaccion",
+    "selectAccount":"Selecciona una cuenta",
+    "expenses":"Gastos",
+    "income":"Ingresos"
 }

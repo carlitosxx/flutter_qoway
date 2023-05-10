@@ -87,18 +87,23 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             Positioned(
               top: 0,
               right: 0,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: FractionallySizedBox(
-                  widthFactor: 1,
-                  child: SizedBox(
-                    height: minExtend,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(title),
-                        const Icon(Icons.arrow_drop_down)
-                      ],
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/selectAccount');
+                },
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: FractionallySizedBox(
+                    widthFactor: 1,
+                    child: SizedBox(
+                      height: minExtend,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(title),
+                          const Icon(Icons.arrow_drop_down)
+                        ],
+                      ),
                     ),
                   ),
                 ),

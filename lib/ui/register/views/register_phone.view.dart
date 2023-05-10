@@ -211,8 +211,10 @@ class ConsumerRegister extends StatelessWidget {
           //* ESTADO CARGADO
           loaded: (id) {
             Navigator.of(context).pushNamedAndRemoveUntil(
-                '/home', (route) => false,
-                arguments: id.toString());
+              '/home',
+              (route) => false,
+              arguments: id.toString(),
+            );
           },
           //* ESTADO ERROR
           error: (error) {

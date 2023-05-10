@@ -24,5 +24,9 @@
     "errorEmptyFields":"Do not leave empty fields",
     "errrPasswordNotMatch":"Passwords do not match",
     "textAccountsDrawer":"Accounts",
-    "logout":"Logout"
+    "logout":"Logout",
+    "addTransaction":"Add transaction",
+    "selectAccount":"Select account",
+    "expenses":"Expenses",
+    "income":"Income"
 }
