@@ -3,8 +3,10 @@
 //     final cuentas = cuentasFromJson(jsonString);
 
 import 'package:database/src/models/movimiento.model.dart';
-// import 'package:meta/meta.dart';
-// import 'dart:convert';
+
+/// transofmra un List<Map<String, dynamic>> a una lista de Cuentas
+List<Cuentas> cuentasFromMap(List<Map<String, dynamic>> listmap) =>
+    listmap.map(Cuentas.fromMap).toList();
 
 /// clase cuentas
 class Cuentas {
@@ -14,6 +16,7 @@ class Cuentas {
     required this.descripcion,
     required this.estaIncluido,
     this.idUsuario,
+    this.total,
     required this.movimientos,
   });
 
@@ -27,6 +30,7 @@ class Cuentas {
       id: json['id'] as int,
       descripcion: json['descripcion'] as String,
       estaIncluido: json['estaIncluido'] as int,
+      total: json['total'] as double,
       movimientos: List<Movimiento>.from(
         dynamicList.map((x) {
           return Movimiento.fromJson(x);
@@ -47,6 +51,9 @@ class Cuentas {
   /// id del usuario de la cuenta
   final int? idUsuario;
 
+  /// total
+  final double? total;
+
   /// Lista de movimientos entre ingresos y egresos
   final List<Movimiento> movimientos;
 
@@ -56,6 +63,7 @@ class Cuentas {
     String? descripcion,
     int? estaIncluido,
     int? idUsuario,
+    double? total,
     List<Movimiento>? movimientos,
   }) =>
       Cuentas(
@@ -63,6 +71,7 @@ class Cuentas {
         descripcion: descripcion ?? this.descripcion,
         estaIncluido: estaIncluido ?? this.estaIncluido,
         idUsuario: idUsuario ?? this.idUsuario,
+        total: total ?? this.total,
         movimientos: movimientos ?? this.movimientos,
       );
 
@@ -74,6 +83,7 @@ class Cuentas {
         'descripcion': descripcion,
         'esta_incluido': estaIncluido,
         'id_usuario': idUsuario,
+        'total': total,
         'movimientos': List<dynamic>.from(movimientos.map((x) => x.toJson())),
       };
 }

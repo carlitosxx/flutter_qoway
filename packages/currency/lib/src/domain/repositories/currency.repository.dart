@@ -9,5 +9,5 @@ abstract class CurrencyRepository {
       getCurrencies();
 
   /// interfaz para obtener la lista de cuentas y sus movimientos
-  Future<Either<HttpRequestFailure, List<Cuentas>>> getAccounts(int userId);
+  Future<Either<HttpRequestFailure, ResponseCuentas>> getAccounts(int userId);
 }

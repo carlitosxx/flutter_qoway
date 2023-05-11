@@ -28,5 +28,9 @@
     "addTransaction":"Agregar transaccion",
     "selectAccount":"Selecciona una cuenta",
     "expenses":"Gastos",
-    "income":"Ingresos"
+    "income":"Ingresos",
+    "total":"Total",
+    "subtitleOfListTileTotal":"Esta cuenta tiene la sumatoria de las cuentas que lo permiten",
+    "allowedSummation":"Permitido para la sumatoria total",
+    "notAllowedSummation":"No permitido para la sumatoria total"
 }

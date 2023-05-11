@@ -28,5 +28,10 @@
     "addTransaction":"Add transaction",
     "selectAccount":"Select account",
     "expenses":"Expenses",
-    "income":"Income"
+    "income":"Income",
+    "total":"Total",
+    "subtitleOfListTileTotal":"This account has the sum of the accounts that allow it",
+    "allowedSummation":"allowed for total summation",
+    "notAllowedSummation":"Not allowed for total summation"
+    
 }

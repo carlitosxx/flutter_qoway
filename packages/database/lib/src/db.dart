@@ -2,6 +2,7 @@
 import 'package:collection/collection.dart';
 import 'package:database/src/models/cuenta.model.dart';
 import 'package:database/src/models/cuentas.model.dart';
+import 'package:database/src/models/response_cuentas.model.dart';
 // import 'package:database/src/models/movimiento.model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
@@ -160,7 +161,8 @@ class Db {
   }
 
   /// Obtener Lista de Cuentas
-  Future<List<Cuentas>> getAccounts(int id) async {
+  // Future<List<Cuentas>>
+  Future<ResponseCuentas> getAccounts(int id) async {
     final database = await _openDB();
 
     final response = await database.rawQuery(
@@ -185,10 +187,13 @@ class Db {
         groupBy(response, (p0) => p0['idCuenta']).entries.map(
       (entry) {
         final idCuenta = entry.key;
+        var totalAccount = 0.0;
         final movimientos = entry.value
             .map(
               (obj) {
                 if (obj['idMovimiento'] != null) {
+                  totalAccount =
+                      totalAccount + double.parse(obj['monto'].toString());
                   return {
                     'idMovimiento': obj['idMovimiento'],
                     'tipoMovimiento': obj['tipoMovimiento'],
@@ -205,34 +210,18 @@ class Db {
           'id': idCuenta,
           'descripcion': entry.value.first['descripcion'],
           'estaIncluido': entry.value.first['estaIncluido'],
+          'total': totalAccount,
           'movimientos': movimientos
         };
       },
     ).toList();
 
-    final lista = <Cuentas>[];
-    for (final element in nuevoAgrupado) {
-      lista.add(Cuentas.fromMap(element));
-    }
-    // print(lista);
-
-    // final listaCuenta = [
-    //   Cuentas(
-    //     id: 1,
-    //     descripcion: 'descripcion',
-    //     estaIncluido: 1,
-    //     idUsuario: 1,
-    //     movimientos: [
-    //       Movimiento(
-    //         id: 1,
-    //         tipoMovimiento: 1,
-    //         monto: 12.2,
-    //         fecha: 1683507880,
-    //         comentario: 'comentario',
-    //       ),
-    //     ],
-    //   )
-    // ];
-    return lista;
+    final cuentas = cuentasFromMap(nuevoAgrupado);
+    final total = cuentas
+        .map((cuenta) => cuenta.total!)
+        .reduce((value, element) => value + element);
+    // print(total);
+    final responseCuentas = ResponseCuentas(cuentas, total);
+    return responseCuentas;
   }
 }

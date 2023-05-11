@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/skeleton/list_tile_a.skeleton.dart';
-import 'package:qoway/ui/home/bloc/bloc/accounts_bloc.dart';
+import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
 
 class SelectAccountView extends StatelessWidget {
   const SelectAccountView({super.key});
@@ -46,85 +46,41 @@ class SelectAccountView extends StatelessWidget {
             //Resto
             BlocBuilder<AccountsBloc, AccountsState>(
               builder: (context, state) {
-                // print(state);
                 return state.maybeWhen(
-                    orElse: () =>
-                        const SliverToBoxAdapter(child: Text('Error')),
-                    loading: () => SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              return const ListTileSkeleton();
-                            },
-                            childCount: 15,
-                          ),
+                  orElse: () => const SliverToBoxAdapter(child: Text('Error')),
+                  loading: () => SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return const ListTileSkeleton();
+                      },
+                      childCount: 15,
+                    ),
+                  ),
+                  loaded: (listAccounts) => SliverList(
+                    delegate: SliverChildListDelegate([
+                      ListTile(
+                        title: Text(l10n.total),
+                        subtitle: Text(
+                          l10n.subtitleOfListTileTotal,
                         ),
-                    loaded: (listAccounts) => SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) => ListTile(
-                              title: Text(listAccounts[index].descripcion),
-                              subtitle: Text(
-                                listAccounts[index].estaIncluido.toString(),
-                              ),
-                            ),
-                            childCount: listAccounts.length,
+                        trailing: Text(listAccounts.total.toString()),
+                      ),
+                      ...listAccounts.data.map(
+                        (e) => ListTile(
+                          title: Text(e.descripcion),
+                          subtitle: Text(
+                            (e.estaIncluido == 1)
+                                ? l10n.allowedSummation
+                                : l10n.notAllowedSummation,
                           ),
-                        ));
+                          trailing: Text(e.total.toString()),
+                        ),
+                      )
+                    ]),
+                  ),
+                );
               },
             )
-            // SliverToBoxAdapter(
-            //   child: Column(
-            //     children: [
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //         children: [
-            //           GestureDetector(
-            //             onTap: () {
-            //               // tipoTransaccion=1;
-            //               // setState((){});
-            //             },
-            //             child: Container(
-            //               height: 40,
-            //               width: 100,
-            //               decoration: BoxDecoration(
-            //                   // color: (tipoTransaccion==0)?Theme.of(context).scaffoldBackgroundColor:Colors.black26,
-            //                   borderRadius: BorderRadius.circular(20)),
-            //               child: const Center(
-            //                 child: Text(
-            //                   'INGRESO',
-            //                   // style: TextStyle(color: (tipoTransaccion==0)?Colors.grey:Colors.white),
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //           GestureDetector(
-            //             onTap: () {
-            //               //  tipoTransaccion=0;
-            //               // setState((){});
-            //             },
-            //             child: Container(
-            //               height: 40,
-            //               width: 100,
-            //               decoration: BoxDecoration(
-            //                   // color: (tipoTransaccion == 0)
-            //                   //     ? Colors.black26
-            //                   //     : Theme.of(context).scaffoldBackgroundColor,
-            //                   borderRadius: BorderRadius.circular(20)),
-            //               child: const Center(
-            //                   child: Text(
-            //                 'EGRESO',
-            //                 // style: TextStyle(
-            //                 //   color: (tipoTransaccion == 0)
-            //                 //       ? Colors.white
-            //                 //       : Colors.grey,
-            //                 // ),
-            //               )),
-            //             ),
-            //           )
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),

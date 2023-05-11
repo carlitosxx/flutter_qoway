@@ -11,7 +11,7 @@ class AccountsUC {
   final CurrencyRepository currencyRepository;
 
   /// metodo para utilizar en el bloc con el mismo nombre del caso de uso
-  Future<Either<HttpRequestFailure, List<Cuentas>>> call(int userId) async {
+  Future<Either<HttpRequestFailure, ResponseCuentas>> call(int userId) async {
     return currencyRepository.getAccounts(userId);
   }
 }

@@ -10,7 +10,7 @@ abstract class CurrencyDataSource {
       getCurrencies();
 
   /// metodo
-  Future<Either<HttpRequestFailure, List<Cuentas>>> getAccounts(int idUser);
+  Future<Either<HttpRequestFailure, ResponseCuentas>> getAccounts(int idUser);
 }
 
 /// implementacion del datasource
@@ -36,12 +36,12 @@ class CurrencyDataSourceImpl implements CurrencyDataSource {
   }
 
   @override
-  Future<Either<HttpRequestFailure, List<Cuentas>>> getAccounts(
+  Future<Either<HttpRequestFailure, ResponseCuentas>> getAccounts(
     int idUser,
   ) async {
     try {
       final response = await sqlite.getAccounts(idUser);
-      if (response.isNotEmpty) {
+      if (response.data.isNotEmpty) {
         return Either.right(response);
       }
       return Either.left(HttpRequestFailure.notFound());
