@@ -1,7 +1,9 @@
+import 'package:database/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/skeleton/list_tile_a.skeleton.dart';
+import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
 
 class SelectAccountView extends StatelessWidget {
@@ -59,6 +61,20 @@ class SelectAccountView extends StatelessWidget {
                   loaded: (listAccounts) => SliverList(
                     delegate: SliverChildListDelegate([
                       ListTile(
+                        onTap: () {
+                          context.read<AccountBloc>().add(
+                                AccountEvent.loaded(
+                                  Cuentas(
+                                    descripcion: l10n.total,
+                                    total: listAccounts.total,
+                                    movimientos: [],
+                                    estaIncluido: 0,
+                                    id: 0,
+                                  ),
+                                ),
+                              );
+                          Navigator.of(context).pop();
+                        },
                         title: Text(l10n.total),
                         subtitle: Text(
                           l10n.subtitleOfListTileTotal,
@@ -67,6 +83,12 @@ class SelectAccountView extends StatelessWidget {
                       ),
                       ...listAccounts.data.map(
                         (e) => ListTile(
+                          onTap: () {
+                            context
+                                .read<AccountBloc>()
+                                .add(AccountEvent.loaded(e));
+                            Navigator.of(context).pop();
+                          },
                           title: Text(e.descripcion),
                           subtitle: Text(
                             (e.estaIncluido == 1)

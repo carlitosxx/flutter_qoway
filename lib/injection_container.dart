@@ -5,6 +5,7 @@ import 'package:database/database.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:qoway/ui/currency/bloc/currency_bloc.dart';
+import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
@@ -21,6 +22,7 @@ Future<void> init() async {
   sl.registerFactory(CurrencySetBloc.new);
   sl.registerFactory(() => UserIdBloc(sl()));
   sl.registerFactory(() => AccountsBloc(sl()));
+  sl.registerFactory(AccountBloc.new);
 
   /// Casos de Uso
   sl.registerLazySingleton(() => LoginUC(sl()));

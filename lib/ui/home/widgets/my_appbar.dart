@@ -1,4 +1,11 @@
+// import 'package:database/database.dart';
+import 'package:database/database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qoway/l10n/l10n.dart';
+import 'package:qoway/ui/common/skeleton/text_a.skelton.dart';
+import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
+import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
 
 class MyAppBar extends StatefulWidget {
   const MyAppBar({
@@ -16,8 +23,6 @@ class _MyAppBarState extends State<MyAppBar> {
       pinned: true,
       floating: true,
       delegate: PersistentHeaderDelegate(
-        title: 'PRINCIPAL',
-        subTitle: '1800',
         maxExtend: const Size.fromHeight(kToolbarHeight).height * 2,
         minExtend: const Size.fromHeight(kToolbarHeight).height,
       ),
@@ -27,14 +32,10 @@ class _MyAppBarState extends State<MyAppBar> {
 
 class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   PersistentHeaderDelegate({
-    required this.title,
-    required this.subTitle,
     required this.maxExtend,
     required this.minExtend,
   });
 
-  final String title;
-  final String subTitle;
   final double maxExtend;
   final double minExtend;
   @override
@@ -45,8 +46,24 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   ) {
     final newValue = maxExtend - shrinkOffset;
     final delta = newValue / maxExtend;
-    // final teta = shrinkOffset / maxExtend;
+    final teta = shrinkOffset / maxExtend;
+    final ancho = MediaQuery.of(context).size.width;
 
+    var b = 0.0;
+    var c = 0.0;
+
+    if (delta < 0.5) {
+      b = 0;
+      c = (teta - 0.5) / 0.5;
+    } else {
+      c = 0;
+      b = (delta - 0.5) / 0.5;
+    }
+    // print('valor de teta:$teta');
+    var d = 0.0;
+    d = (1 - teta) * 100 + (1 - teta) * 35 + teta * 50;
+
+    // print(d);
     return SizedBox.expand(
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -57,6 +74,8 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
           ),
         ),
         child: Stack(
+          alignment: Alignment.center,
+          // (delta < 0.5) ? Alignment.centerRight : Alignment.center,
           children: [
             Positioned(
               top: 0,
@@ -66,7 +85,7 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                   Scaffold.of(context).openDrawer();
                 },
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.15,
+                  width: ancho * 0.15,
                   child: FractionallySizedBox(
                     widthFactor: 1,
                     child: Row(
@@ -86,41 +105,56 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
 
             Positioned(
               top: 0,
-              right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('/selectAccount');
-                },
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: FractionallySizedBox(
-                    widthFactor: 1,
-                    child: SizedBox(
-                      height: minExtend,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(title),
-                          const Icon(Icons.arrow_drop_down)
-                        ],
-                      ),
-                    ),
+              child: Transform.translate(
+                offset: Offset(((ancho / 2) - minExtend) * teta, 0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/selectAccount');
+                  },
+                  child: SizedBox(
+                    height: minExtend,
+                    child: const ComboBox(),
                   ),
                 ),
               ),
             ),
+
             Positioned(
-              bottom: 0,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: FractionallySizedBox(
-                  widthFactor: 1,
+              top: 50 * delta,
+              // (delta > 0.5) ? 50 * delta : 0,
+              left: (delta > 0.5) ? -100 * teta : d,
+              child: Opacity(
+                opacity: (delta > 0.5) ? b : c,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
                   child: SizedBox(
                     height: minExtend,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: (delta > 0.5)
+                          ? MainAxisAlignment.center
+                          : MainAxisAlignment.start,
                       children: [
-                        Text(subTitle),
+                        BlocBuilder<AccountBloc, AccountState>(
+                          builder: (context, state) {
+                            return state.maybeWhen(
+                              orElse: () => const TextASkeleton(),
+                              setAccount: (cuenta) => Text(
+                                cuenta.total.toString(),
+                                style: TextStyle(
+                                  fontSize: (delta > 0.5) ? 35 : 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              setNewAccount: (cuenta) => Text(
+                                cuenta.total.toString(),
+                                style: TextStyle(
+                                  fontSize: (delta > 0.5) ? 35 : 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -129,36 +163,8 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             )
 
             // Row(
-            //   children: [
-            //     Flexible(
-            //         fit: FlexFit.tight, flex: 20, child: Icon(Icons.menu)),
-            //     Flexible(
-            //       fit: FlexFit.tight,
-            //       flex: 80,
-            //       child: Text('como estas'),
-            //     )
-            //   ],
-            // ),
-            // Positioned(
-            //   child: Text(title),
-            // ),
           ],
-        )
-        // Center(
-        //   child: Transform.scale(
-        //     scale: delta,
-        //     child: Opacity(
-        //       opacity: delta,
-        //       child: Text(
-        //         'shrinkOffset: ${shrinkOffset.toStringAsFixed(0)} \n '
-        //         'teta: ${teta.toStringAsFixed(1)} \n'
-        //         'tmp1: ${newValue.toStringAsFixed(0)} \n'
-        //         'tmp2: $maxExtend delta: ${delta.toStringAsFixed(1)} \n',
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        ,
+        ),
       ),
     );
   }
@@ -172,5 +178,54 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return true;
+  }
+}
+
+class ComboBox extends StatelessWidget {
+  const ComboBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        BlocListener<AccountsBloc, AccountsState>(
+          listener: (context, state) {
+            state.maybeWhen(
+              orElse: () => const SizedBox.shrink(),
+              loaded: (cuenta) => context.read<AccountBloc>().add(
+                    AccountEvent.started(
+                      Cuentas(
+                        id: 0,
+                        descripcion: l10n.total,
+                        movimientos: [],
+                        estaIncluido: 0,
+                        total: cuenta.data[0].total,
+                      ),
+                    ),
+                  ),
+            );
+          },
+          child: const SizedBox.shrink(),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: BlocBuilder<AccountBloc, AccountState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => const TextASkeleton(),
+                setAccount: (cuenta) => Text(cuenta.descripcion),
+                setNewAccount: (cuenta) => Text(cuenta.descripcion),
+              );
+              // Text(title);
+            },
+          ),
+        ),
+        const Icon(Icons.arrow_drop_down)
+      ],
+    );
   }
 }
