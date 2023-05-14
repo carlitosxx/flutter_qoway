@@ -29,6 +29,8 @@ dependencies:
   material_color_utilities: ^0.2.0
   security:
     path: "./packages/security"
+  table_calendar: ^3.0.9
+  # table_calendar: ^3.0.6
 dev_dependencies:
   bloc_test: ^9.1.1
   build_runner: ^2.3.3

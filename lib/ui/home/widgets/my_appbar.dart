@@ -59,11 +59,8 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
       c = 0;
       b = (delta - 0.5) / 0.5;
     }
-    // print('valor de teta:$teta');
     var d = 0.0;
     d = (1 - teta) * 100 + (1 - teta) * 35 + teta * 50;
-
-    // print(d);
     return SizedBox.expand(
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -75,7 +72,6 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
         ),
         child: Stack(
           alignment: Alignment.center,
-          // (delta < 0.5) ? Alignment.centerRight : Alignment.center,
           children: [
             Positioned(
               top: 0,
@@ -142,14 +138,12 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                                 cuenta.total.toString(),
                                 style: TextStyle(
                                   fontSize: (delta > 0.5) ? 35 : 18,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               setNewAccount: (cuenta) => Text(
                                 cuenta.total.toString(),
                                 style: TextStyle(
                                   fontSize: (delta > 0.5) ? 35 : 18,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             );

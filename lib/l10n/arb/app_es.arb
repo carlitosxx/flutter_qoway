@@ -25,12 +25,14 @@
     "errrPasswordNotMatch":"Las contraseñas no coinciden",
     "textAccountsDrawer":"Cuentas",
     "logout":"Salir",
-    "addTransaction":"Agregar transaccion",
+    "addTransaction":"Agregar transacción",
     "selectAccount":"Selecciona una cuenta",
     "expenses":"Gastos",
     "income":"Ingresos",
     "total":"Total",
     "subtitleOfListTileTotal":"Esta cuenta tiene la sumatoria de las cuentas que lo permiten",
     "allowedSummation":"Permitido para la sumatoria total",
-    "notAllowedSummation":"No permitido para la sumatoria total"
+    "notAllowedSummation":"No permitido para la sumatoria total",
+    "enterComment":"Ingresa un comentario",
+    "enterAmount":"Ingresa un monto"
 }

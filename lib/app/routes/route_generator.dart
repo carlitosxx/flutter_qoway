@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qoway/ui/add_transaction/add_transaction.page.dart';
 import 'package:qoway/ui/currency/currency.page.dart';
 import 'package:qoway/ui/home/home_page.dart';
 import 'package:qoway/ui/home/views/select_account_view.dart';
@@ -27,6 +28,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const RegisterPage());
       case '/currency':
         return MaterialPageRoute(builder: (_) => const CurrencyPage());
+      case '/addTransaction':
+        return MaterialPageRoute(builder: (_) => const AddTransactionPage());
       case '/selectAccount':
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>

@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:database/database.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-// import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
 
 part 'account_event.dart';
 part 'account_state.dart';

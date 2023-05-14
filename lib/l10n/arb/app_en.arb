@@ -32,6 +32,7 @@
     "total":"Total",
     "subtitleOfListTileTotal":"This account has the sum of the accounts that allow it",
     "allowedSummation":"allowed for total summation",
-    "notAllowedSummation":"Not allowed for total summation"
-    
+    "notAllowedSummation":"Not allowed for total summation",
+    "enterComment":"Enter a comment",
+    "enterAmount":"Enter amount"
 }
