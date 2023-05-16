@@ -206,6 +206,7 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: ButtonWidget(
               onButtonClick: () {
+                //TODO:
                 final movimiento = Movimiento(
                   tipoMovimiento: tipoTransaccion,
                   monto: (tipoTransaccion == 1)
@@ -219,22 +220,7 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                 context.read<TransactionBloc>().add(
                       TransactionEvent.clicked(movimiento, accountBloc),
                     );
-                // final transactionState =
-                //     BlocProvider.of<TransactionBloc>(context).state;
-                // final id = transactionState.whenOrNull(
-                //   success: (id) => id,
-                // );
-                // final copyMovimiento = movimiento.copyWith(idMovimiento: id);
-                // final accountState =
-                //     BlocProvider.of<AccountBloc>(context).state;
-                // final account = accountState.whenOrNull(
-                //   setNewAccount: (account) => account,
-                // );
-                // final movimientos = [...account!.movimientos, copyMovimiento];
-                // final copyAccount = account.copyWith(movimientos: movimientos);
-                // context
-                //     .read<AccountBloc>()
-                //     .add(AccountEvent.reloaded(copyAccount));
+
                 Navigator.pop(context);
               },
               text: l10n.add,

@@ -98,7 +98,6 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                 ),
               ),
             ),
-
             Positioned(
               top: 0,
               child: Transform.translate(
@@ -114,7 +113,6 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                 ),
               ),
             ),
-
             Positioned(
               top: 50 * delta,
               // (delta > 0.5) ? 50 * delta : 0,
@@ -132,7 +130,6 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                       children: [
                         BlocBuilder<AccountBloc, AccountState>(
                           builder: (context, state) {
-                            print(state);
                             return state.maybeWhen(
                               orElse: () => const TextASkeleton(),
                               setAccount: (cuenta) => Text(
@@ -162,8 +159,6 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                 ),
               ),
             )
-
-            // Row(
           ],
         ),
       ),
@@ -222,7 +217,6 @@ class ComboBox extends StatelessWidget {
                 setNewAccount: (cuenta) => Text(cuenta.descripcion),
                 reloadAccount: (cuenta) => Text(cuenta.descripcion),
               );
-              // Text(title);
             },
           ),
         ),

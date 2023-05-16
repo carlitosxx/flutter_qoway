@@ -4,5 +4,7 @@ part of 'transaction_bloc.dart';
 class TransactionEvent with _$TransactionEvent {
   const factory TransactionEvent.started() = TransactionStarted;
   const factory TransactionEvent.clicked(
-      Movimiento transaction, AccountBloc accountBloc) = TransactionClicked;
+    Movimiento transaction,
+    AccountBloc accountBloc,
+  ) = TransactionClicked;
 }

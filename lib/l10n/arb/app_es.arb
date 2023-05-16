@@ -35,5 +35,17 @@
     "notAllowedSummation":"No permitido para la sumatoria total",
     "enterComment":"Ingresa un comentario",
     "enterAmount":"Ingresa un monto",
-    "add":"Agregar"
+    "add":"Agregar",    
+    "january":"Ene",
+    "february":"Feb",
+    "march":"Mar",
+    "april":"Abr",
+    "may":"May",
+    "june":"Jun",
+    "july":"Jul",
+    "august":"Ago",
+    "september":"Set",
+    "october":"Oct",
+    "november":"Nov",
+    "december":"Dic"
 }

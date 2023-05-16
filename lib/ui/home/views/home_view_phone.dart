@@ -53,6 +53,15 @@ class _HomeViewPhoneState extends State<HomeViewPhone> {
                     },
                     child: const Icon(Icons.add),
                   ),
+                  reloadAccount: (cuenta) => FloatingActionButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        '/addTransaction',
+                        arguments: cuenta.id.toString(),
+                      );
+                    },
+                    child: const Icon(Icons.add),
+                  ),
                 );
               },
             ),
