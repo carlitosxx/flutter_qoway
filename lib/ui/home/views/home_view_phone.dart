@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:qoway/ui/home/views/expenses_view.dart';
 import 'package:qoway/ui/home/views/income_expenses_view.dart';
 import 'package:qoway/ui/home/widgets/my_appbar.dart';
@@ -38,11 +40,21 @@ class _HomeViewPhoneState extends State<HomeViewPhone> {
             body: CustomScrollView(
               slivers: [const MyAppBar(), screens[screnIndex]],
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/addTransaction');
+            floatingActionButton: BlocBuilder<AccountBloc, AccountState>(
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => const SizedBox.shrink(),
+                  setNewAccount: (cuenta) => FloatingActionButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        '/addTransaction',
+                        arguments: cuenta.id.toString(),
+                      );
+                    },
+                    child: const Icon(Icons.add),
+                  ),
+                );
               },
-              child: const Icon(Icons.add),
             ),
           ),
         ),

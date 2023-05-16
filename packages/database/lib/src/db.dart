@@ -2,6 +2,7 @@
 import 'package:collection/collection.dart';
 import 'package:database/src/models/cuenta.model.dart';
 import 'package:database/src/models/cuentas.model.dart';
+import 'package:database/src/models/movimiento.model.dart';
 import 'package:database/src/models/response_cuentas.model.dart';
 // import 'package:database/src/models/movimiento.model.dart';
 // ignore: depend_on_referenced_packages
@@ -19,20 +20,17 @@ class Db {
   }
 
   static Future<void> _onCreate(Database db, int version) async {
-    await db.execute(
-        '''
+    await db.execute('''
         CREATE TABLE actividad(
           id INTEGER
         );       
       ''');
-    await db.execute(
-        '''
+    await db.execute('''
         INSERT INTO actividad(id)
         values(0);
       ''');
 
-    await db.execute(
-        '''
+    await db.execute('''
         CREATE TABLE usuario(
           id INTEGER PRIMARY KEY ,
           nombre TEXT,
@@ -43,8 +41,7 @@ class Db {
           simboloDivisa TEXT,
           ladoDivisa INTEGER);       
       ''');
-    await db.execute(
-        '''
+    await db.execute('''
         CREATE TABLE cuenta(
           id INTEGER PRIMARY KEY,
           descripcion TEXT,
@@ -52,8 +49,7 @@ class Db {
           idUsuario INTEGER,
           FOREIGN KEY(idUsuario) REFERENCES usuario(id));          
       ''');
-    await db.execute(
-        '''
+    await db.execute('''
         CREATE TABLE movimiento(
           id INTEGER PRIMARY KEY,
           tipoMovimiento INTEGER,
@@ -64,8 +60,7 @@ class Db {
           FOREIGN KEY(idCuenta) REFERENCES cuenta(id)
           );
       ''');
-    await db.execute(
-        '''
+    await db.execute('''
         CREATE TABLE divisa(
           id INTEGER PRIMARY KEY,
           descDivisa TEXT,
@@ -73,8 +68,7 @@ class Db {
           simboloDivisa TEXT,
           ladoDivisa INTEGER);
       ''');
-    await db.execute(
-        r'''
+    await db.execute(r'''
         INSERT INTO divisa(descDivisa,cortoDivisa,simboloDivisa,ladoDivisa)
         values
         ('Boliviano','BOB','Bs.',1),
@@ -160,8 +154,8 @@ class Db {
     return divisasMap;
   }
 
-  /// Obtener Lista de Cuentas
-  // Future<List<Cuentas>>
+  /// Obtener Lista de Cuentas por idUsuario
+
   Future<ResponseCuentas> getAccounts(int id) async {
     final database = await _openDB();
 
@@ -199,7 +193,8 @@ class Db {
                     'tipoMovimiento': obj['tipoMovimiento'],
                     'monto': obj['monto'],
                     'fecha': obj['fecha'],
-                    'comentario': obj['comentario']
+                    'comentario': obj['comentario'],
+                    'idCuenta': obj['idCuenta'],
                   };
                 }
               },
@@ -220,8 +215,14 @@ class Db {
     final total = cuentas
         .map((cuenta) => cuenta.total!)
         .reduce((value, element) => value + element);
-    // print(total);
+
     final responseCuentas = ResponseCuentas(cuentas, total);
     return responseCuentas;
+  }
+
+  /// INSERTAR MOVIMIENTOS
+  Future<int> addTransaction(Movimiento movimiento) async {
+    final database = await _openDB();
+    return database.insert('movimiento', movimiento.toMap());
   }
 }

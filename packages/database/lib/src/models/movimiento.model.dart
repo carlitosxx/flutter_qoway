@@ -2,11 +2,12 @@
 class Movimiento {
   ///constructor
   Movimiento({
-    required this.idMovimiento,
+    this.idMovimiento,
     required this.tipoMovimiento,
     required this.monto,
     required this.fecha,
     required this.comentario,
+    this.idCuenta,
   });
 
   /// de Json a Movimiento
@@ -16,10 +17,11 @@ class Movimiento {
         monto: json['monto'] as double,
         fecha: json['fecha'] as int,
         comentario: json['comentario'] as String,
+        idCuenta: json['idCuenta'] as int,
       );
 
   ///id
-  final int idMovimiento;
+  final int? idMovimiento;
 
   ///tipo de movimiento 1 ingreso 0 egreso
   final int tipoMovimiento;
@@ -33,6 +35,9 @@ class Movimiento {
   /// comentario
   final String comentario;
 
+  /// id de cuenta
+  int? idCuenta;
+
   /// hacer una copia
   Movimiento copyWith({
     int? idMovimiento,
@@ -40,6 +45,7 @@ class Movimiento {
     double? monto,
     int? fecha,
     String? comentario,
+    int? idCuenta,
   }) =>
       Movimiento(
         idMovimiento: idMovimiento ?? this.idMovimiento,
@@ -47,6 +53,7 @@ class Movimiento {
         monto: monto ?? this.monto,
         fecha: fecha ?? this.fecha,
         comentario: comentario ?? this.comentario,
+        idCuenta: idCuenta ?? this.idCuenta,
       );
 
   // factory Movimiento.fromRawJson(String str) =>
@@ -55,11 +62,12 @@ class Movimiento {
   // String toRawJson() => json.encode(toJson());
 
   /// convertir a Json
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         'id': idMovimiento,
-        'tipo_movimiento': tipoMovimiento,
+        'tipoMovimiento': tipoMovimiento,
         'monto': monto,
         'fecha': fecha,
         'comentario': comentario,
+        'idCuenta': idCuenta,
       };
 }

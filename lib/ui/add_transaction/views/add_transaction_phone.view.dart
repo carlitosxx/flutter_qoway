@@ -1,12 +1,17 @@
+import 'package:database/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/l10n/l10n.dart';
+import 'package:qoway/ui/add_transaction/bloc/transaction/transaction_bloc.dart';
+import 'package:qoway/ui/common/widgets/button.dart';
 import 'package:qoway/ui/common/widgets/my_textfield.dart';
+import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AddTransactionPhoneView extends StatefulWidget {
-  const AddTransactionPhoneView({super.key});
-
+  const AddTransactionPhoneView({super.key, required this.accountId});
+  final String accountId;
   @override
   State<AddTransactionPhoneView> createState() =>
       _AddTransactionPhoneViewState();
@@ -31,8 +36,9 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    Locale currentLocale = Localizations.localeOf(context);
-    print(currentLocale);
+    final currentLocale = Localizations.localeOf(context);
+    final localeToString = currentLocale.toString();
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
@@ -67,7 +73,8 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                                     ? Theme.of(context).scaffoldBackgroundColor
                                     : Theme.of(context)
                                         .colorScheme
-                                        .primaryContainer,
+                                        .primary
+                                        .withOpacity(0.12),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
@@ -89,8 +96,9 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                                 color: (tipoTransaccion == 0)
                                     ? Theme.of(context)
                                         .colorScheme
-                                        .primaryContainer
-                                    : Theme.of(context).colorScheme.background,
+                                        .primary
+                                        .withOpacity(0.12)
+                                    : Theme.of(context).scaffoldBackgroundColor,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
@@ -134,7 +142,7 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                         ),
                       ),
                       TableCalendar<DateTime>(
-                        // locale: currentLocale,
+                        locale: (localeToString == 'en') ? 'en_US' : 'es_ES',
                         focusedDay: _focusedDay,
                         firstDay: DateTime(2000),
                         lastDay: DateTime(2100),
@@ -142,25 +150,40 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                         startingDayOfWeek: StartingDayOfWeek.monday,
                         // QUITAR EL BOTON WEEK Y CENTRAR EL MES Y AÑO
                         headerStyle: const HeaderStyle(
-                            titleCentered: true, formatButtonVisible: false),
+                          titleCentered: true,
+                          formatButtonVisible: false,
+                        ),
                         currentDay: DateTime.now(),
-                        calendarStyle: const CalendarStyle(
-                            selectedDecoration: BoxDecoration(
-                              color: Colors.black38,
-                              shape: BoxShape.circle,
-                            ),
-                            todayDecoration: BoxDecoration(
-                              color: Colors.white10,
-                              shape: BoxShape.circle,
-                            )),
+                        calendarStyle: CalendarStyle(
+                          selectedTextStyle: TextStyle(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                          selectedDecoration: BoxDecoration(
+                            color:
+                                Theme.of(context).colorScheme.primaryContainer,
+                            shape: BoxShape.circle,
+                          ),
+                          todayDecoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .scrim
+                                .withOpacity(0.3),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
                         selectedDayPredicate: (day) {
                           return isSameDay(_selectedDay, day);
                         },
                         onDaySelected: (selectedDay, focusedDay) {
                           setState(() {
                             _selectedDay = selectedDay;
-                            _selectedDay = DateTime(selectedDay.year,
-                                selectedDay.month, selectedDay.day);
+                            _selectedDay = DateTime(
+                              selectedDay.year,
+                              selectedDay.month,
+                              selectedDay.day,
+                            );
                             _focusedDay = focusedDay;
                           });
                         },
@@ -178,6 +201,44 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                 ),
               )
             ],
+          ),
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            child: ButtonWidget(
+              onButtonClick: () {
+                final movimiento = Movimiento(
+                  tipoMovimiento: tipoTransaccion,
+                  monto: (tipoTransaccion == 1)
+                      ? double.parse(controllerAmount.text)
+                      : double.parse(controllerAmount.text) * -1,
+                  fecha: _selectedDay.millisecondsSinceEpoch,
+                  comentario: controllerComment.text,
+                  idCuenta: int.parse(widget.accountId),
+                );
+                final accountBloc = BlocProvider.of<AccountBloc>(context);
+                context.read<TransactionBloc>().add(
+                      TransactionEvent.clicked(movimiento, accountBloc),
+                    );
+                // final transactionState =
+                //     BlocProvider.of<TransactionBloc>(context).state;
+                // final id = transactionState.whenOrNull(
+                //   success: (id) => id,
+                // );
+                // final copyMovimiento = movimiento.copyWith(idMovimiento: id);
+                // final accountState =
+                //     BlocProvider.of<AccountBloc>(context).state;
+                // final account = accountState.whenOrNull(
+                //   setNewAccount: (account) => account,
+                // );
+                // final movimientos = [...account!.movimientos, copyMovimiento];
+                // final copyAccount = account.copyWith(movimientos: movimientos);
+                // context
+                //     .read<AccountBloc>()
+                //     .add(AccountEvent.reloaded(copyAccount));
+                Navigator.pop(context);
+              },
+              text: l10n.add,
+            ),
           ),
         ),
       ),

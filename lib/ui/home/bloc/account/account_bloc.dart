@@ -16,5 +16,9 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<Loaded>((event, emit) {
       emit(AccountState.setNewAccount(event.cuenta));
     });
+    on<Reloaded>((event, emit) {
+      // print(state);
+      emit(AccountState.reloadAccount(event.cuenta));
+    });
   }
 }

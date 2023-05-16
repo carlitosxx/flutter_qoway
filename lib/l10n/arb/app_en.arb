@@ -34,5 +34,6 @@
     "allowedSummation":"allowed for total summation",
     "notAllowedSummation":"Not allowed for total summation",
     "enterComment":"Enter a comment",
-    "enterAmount":"Enter amount"
+    "enterAmount":"Enter amount",
+    "add":"Add"
 }

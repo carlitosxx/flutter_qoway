@@ -6,5 +6,6 @@ class AccountState with _$AccountState {
   const factory AccountState.loading() = _Loading;
   const factory AccountState.setAccount(Cuentas cuenta) = _SetAccount;
   const factory AccountState.setNewAccount(Cuentas cuenta) = _SetNewAccount;
+  const factory AccountState.reloadAccount(Cuentas cuenta) = _ReloadAccount;
   // const factory AccountState.error(String error) = _Error;
 }

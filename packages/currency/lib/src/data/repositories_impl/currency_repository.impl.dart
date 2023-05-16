@@ -1,8 +1,6 @@
 import 'package:core/core.dart';
 import 'package:currency/currency.dart';
 import 'package:database/database.dart';
-// ignore: implementation_imports
-// import 'package:database/src/models/cuentas.model.dart';
 
 /// implementacion del repositorio de divisa
 class CurrencyRepositoryImpl implements CurrencyRepository {
@@ -19,5 +17,12 @@ class CurrencyRepositoryImpl implements CurrencyRepository {
   @override
   Future<Either<HttpRequestFailure, ResponseCuentas>> getAccounts(int userId) {
     return _currencyDataSource.getAccounts(userId);
+  }
+
+  @override
+  Future<Either<HttpRequestFailure, int>> addTransaction(
+    Movimiento transaction,
+  ) {
+    return _currencyDataSource.addTrasaction(transaction);
   }
 }

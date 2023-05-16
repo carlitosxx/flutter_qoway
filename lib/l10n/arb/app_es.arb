@@ -34,5 +34,6 @@
     "allowedSummation":"Permitido para la sumatoria total",
     "notAllowedSummation":"No permitido para la sumatoria total",
     "enterComment":"Ingresa un comentario",
-    "enterAmount":"Ingresa un monto"
+    "enterAmount":"Ingresa un monto",
+    "add":"Agregar"
 }

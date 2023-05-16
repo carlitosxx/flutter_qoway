@@ -84,6 +84,6 @@ class Cuentas {
         'esta_incluido': estaIncluido,
         'id_usuario': idUsuario,
         'total': total,
-        'movimientos': List<dynamic>.from(movimientos.map((x) => x.toJson())),
+        'movimientos': List<dynamic>.from(movimientos.map((x) => x.toMap())),
       };
 }

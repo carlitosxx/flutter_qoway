@@ -11,6 +11,9 @@ abstract class CurrencyDataSource {
 
   /// metodo
   Future<Either<HttpRequestFailure, ResponseCuentas>> getAccounts(int idUser);
+
+  /// metodo
+  Future<Either<HttpRequestFailure, int>> addTrasaction(Movimiento transaction);
 }
 
 /// implementacion del datasource
@@ -45,6 +48,21 @@ class CurrencyDataSourceImpl implements CurrencyDataSource {
         return Either.right(response);
       }
       return Either.left(HttpRequestFailure.notFound());
+    } catch (e) {
+      return Either.left(HttpRequestFailure.local());
+    }
+  }
+
+  @override
+  Future<Either<HttpRequestFailure, int>> addTrasaction(
+    Movimiento transaction,
+  ) async {
+    try {
+      final response = await sqlite.addTransaction(transaction);
+      if (response != 0) {
+        return Either.right(response);
+      }
+      return Either.left(HttpRequestFailure.alreadyExist());
     } catch (e) {
       return Either.left(HttpRequestFailure.local());
     }

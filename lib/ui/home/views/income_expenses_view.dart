@@ -104,10 +104,7 @@ class IncomeExpensesView extends StatelessWidget {
                         flex: 30,
                         child: RichText(
                           text: TextSpan(
-                            text:
-                                (cuenta.movimientos[index].tipoMovimiento == 1)
-                                    ? ''
-                                    : '-',
+                            text: 'PEN ', //! OJO CAMBIAR AL SIMBOLO
                             style: TextStyle(
                               color: Theme.of(context)
                                   .colorScheme

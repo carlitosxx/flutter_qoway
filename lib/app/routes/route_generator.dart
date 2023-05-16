@@ -29,7 +29,12 @@ class RouteGenerator {
       case '/currency':
         return MaterialPageRoute(builder: (_) => const CurrencyPage());
       case '/addTransaction':
-        return MaterialPageRoute(builder: (_) => const AddTransactionPage());
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => AddTransactionPage(accountId: args),
+          );
+        }
+        return _errorRoute();
       case '/selectAccount':
         return PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>

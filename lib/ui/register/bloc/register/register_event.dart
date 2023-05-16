@@ -13,22 +13,3 @@ class RegisterEvent with _$RegisterEvent {
     int sideCurrency,
   ) = RegisterLoad;
 }
-
-// class LoadRegisterEvent extends RegisterEvent {
-//   const LoadRegisterEvent(
-//     this.name,
-//     this.email,
-//     this.password,
-//     this.descCurrency,
-//     this.descShortCurrency,
-//     this.simbolCurrency,
-//     this.sideCurrency,
-//   );
-//   final String name;
-//   final String email;
-//   final String password;
-//   final String descCurrency;
-//   final String descShortCurrency;
-//   final String simbolCurrency;
-//   final int sideCurrency;
-// }

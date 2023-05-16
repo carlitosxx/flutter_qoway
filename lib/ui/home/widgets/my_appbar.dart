@@ -132,9 +132,16 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                       children: [
                         BlocBuilder<AccountBloc, AccountState>(
                           builder: (context, state) {
+                            print(state);
                             return state.maybeWhen(
                               orElse: () => const TextASkeleton(),
                               setAccount: (cuenta) => Text(
+                                cuenta.total.toString(),
+                                style: TextStyle(
+                                  fontSize: (delta > 0.5) ? 35 : 18,
+                                ),
+                              ),
+                              reloadAccount: (cuenta) => Text(
                                 cuenta.total.toString(),
                                 style: TextStyle(
                                   fontSize: (delta > 0.5) ? 35 : 18,
@@ -213,6 +220,7 @@ class ComboBox extends StatelessWidget {
                 orElse: () => const TextASkeleton(),
                 setAccount: (cuenta) => Text(cuenta.descripcion),
                 setNewAccount: (cuenta) => Text(cuenta.descripcion),
+                reloadAccount: (cuenta) => Text(cuenta.descripcion),
               );
               // Text(title);
             },
