@@ -216,7 +216,7 @@ class Db {
         .map((cuenta) => cuenta.total!)
         .reduce((value, element) => value + element);
 
-    final responseCuentas = ResponseCuentas(cuentas, total);
+    final responseCuentas = ResponseCuentas(data: cuentas, total: total);
     return responseCuentas;
   }
 

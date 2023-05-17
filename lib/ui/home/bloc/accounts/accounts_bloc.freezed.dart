@@ -20,18 +20,21 @@ mixin _$AccountsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(int userId) load,
+    required TResult Function(ResponseCuentas listAccounts) updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(int userId)? load,
+    TResult? Function(ResponseCuentas listAccounts)? updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(int userId)? load,
+    TResult Function(ResponseCuentas listAccounts)? updated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$AccountsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Loaded value) load,
+    required TResult Function(Updated value) updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
     TResult? Function(Loaded value)? load,
+    TResult? Function(Updated value)? updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Loaded value)? load,
+    TResult Function(Updated value)? updated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$Started implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(int userId) load,
+    required TResult Function(ResponseCuentas listAccounts) updated,
   }) {
     return started();
   }
@@ -121,6 +128,7 @@ class _$Started implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(int userId)? load,
+    TResult? Function(ResponseCuentas listAccounts)? updated,
   }) {
     return started?.call();
   }
@@ -130,6 +138,7 @@ class _$Started implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(int userId)? load,
+    TResult Function(ResponseCuentas listAccounts)? updated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -143,6 +152,7 @@ class _$Started implements Started {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Loaded value) load,
+    required TResult Function(Updated value) updated,
   }) {
     return started(this);
   }
@@ -152,6 +162,7 @@ class _$Started implements Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
     TResult? Function(Loaded value)? load,
+    TResult? Function(Updated value)? updated,
   }) {
     return started?.call(this);
   }
@@ -161,6 +172,7 @@ class _$Started implements Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Loaded value)? load,
+    TResult Function(Updated value)? updated,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -238,6 +250,7 @@ class _$Loaded implements Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function(int userId) load,
+    required TResult Function(ResponseCuentas listAccounts) updated,
   }) {
     return load(userId);
   }
@@ -247,6 +260,7 @@ class _$Loaded implements Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function(int userId)? load,
+    TResult? Function(ResponseCuentas listAccounts)? updated,
   }) {
     return load?.call(userId);
   }
@@ -256,6 +270,7 @@ class _$Loaded implements Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function(int userId)? load,
+    TResult Function(ResponseCuentas listAccounts)? updated,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -269,6 +284,7 @@ class _$Loaded implements Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(Loaded value) load,
+    required TResult Function(Updated value) updated,
   }) {
     return load(this);
   }
@@ -278,6 +294,7 @@ class _$Loaded implements Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Started value)? started,
     TResult? Function(Loaded value)? load,
+    TResult? Function(Updated value)? updated,
   }) {
     return load?.call(this);
   }
@@ -287,6 +304,7 @@ class _$Loaded implements Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(Loaded value)? load,
+    TResult Function(Updated value)? updated,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -306,12 +324,151 @@ abstract class Loaded implements AccountsEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdatedCopyWith<$Res> {
+  factory _$$UpdatedCopyWith(_$Updated value, $Res Function(_$Updated) then) =
+      __$$UpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ResponseCuentas listAccounts});
+}
+
+/// @nodoc
+class __$$UpdatedCopyWithImpl<$Res>
+    extends _$AccountsEventCopyWithImpl<$Res, _$Updated>
+    implements _$$UpdatedCopyWith<$Res> {
+  __$$UpdatedCopyWithImpl(_$Updated _value, $Res Function(_$Updated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listAccounts = null,
+  }) {
+    return _then(_$Updated(
+      null == listAccounts
+          ? _value.listAccounts
+          : listAccounts // ignore: cast_nullable_to_non_nullable
+              as ResponseCuentas,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Updated implements Updated {
+  const _$Updated(this.listAccounts);
+
+  @override
+  final ResponseCuentas listAccounts;
+
+  @override
+  String toString() {
+    return 'AccountsEvent.updated(listAccounts: $listAccounts)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Updated &&
+            (identical(other.listAccounts, listAccounts) ||
+                other.listAccounts == listAccounts));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, listAccounts);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdatedCopyWith<_$Updated> get copyWith =>
+      __$$UpdatedCopyWithImpl<_$Updated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(int userId) load,
+    required TResult Function(ResponseCuentas listAccounts) updated,
+  }) {
+    return updated(listAccounts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(int userId)? load,
+    TResult? Function(ResponseCuentas listAccounts)? updated,
+  }) {
+    return updated?.call(listAccounts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(int userId)? load,
+    TResult Function(ResponseCuentas listAccounts)? updated,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(listAccounts);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(Loaded value) load,
+    required TResult Function(Updated value) updated,
+  }) {
+    return updated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Started value)? started,
+    TResult? Function(Loaded value)? load,
+    TResult? Function(Updated value)? updated,
+  }) {
+    return updated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(Loaded value)? load,
+    TResult Function(Updated value)? updated,
+    required TResult orElse(),
+  }) {
+    if (updated != null) {
+      return updated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Updated implements AccountsEvent {
+  const factory Updated(final ResponseCuentas listAccounts) = _$Updated;
+
+  ResponseCuentas get listAccounts;
+  @JsonKey(ignore: true)
+  _$$UpdatedCopyWith<_$Updated> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AccountsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseCuentas listAccounts) loaded,
+    required TResult Function(ResponseCuentas listAccounts) newListAccounts,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -320,6 +477,7 @@ mixin _$AccountsState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseCuentas listAccounts)? loaded,
+    TResult? Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -328,6 +486,7 @@ mixin _$AccountsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseCuentas listAccounts)? loaded,
+    TResult Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -337,6 +496,7 @@ mixin _$AccountsState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NewListAccounts value) newListAccounts,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -345,6 +505,7 @@ mixin _$AccountsState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NewListAccounts value)? newListAccounts,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -353,6 +514,7 @@ mixin _$AccountsState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_NewListAccounts value)? newListAccounts,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -417,6 +579,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseCuentas listAccounts) loaded,
+    required TResult Function(ResponseCuentas listAccounts) newListAccounts,
     required TResult Function(String error) error,
   }) {
     return initial();
@@ -428,6 +591,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseCuentas listAccounts)? loaded,
+    TResult? Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult? Function(String error)? error,
   }) {
     return initial?.call();
@@ -439,6 +603,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseCuentas listAccounts)? loaded,
+    TResult Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -454,6 +619,7 @@ class _$_Initial implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NewListAccounts value) newListAccounts,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -465,6 +631,7 @@ class _$_Initial implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NewListAccounts value)? newListAccounts,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -476,6 +643,7 @@ class _$_Initial implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_NewListAccounts value)? newListAccounts,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -530,6 +698,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseCuentas listAccounts) loaded,
+    required TResult Function(ResponseCuentas listAccounts) newListAccounts,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -541,6 +710,7 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseCuentas listAccounts)? loaded,
+    TResult? Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult? Function(String error)? error,
   }) {
     return loading?.call();
@@ -552,6 +722,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseCuentas listAccounts)? loaded,
+    TResult Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -567,6 +738,7 @@ class _$_Loading implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NewListAccounts value) newListAccounts,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -578,6 +750,7 @@ class _$_Loading implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NewListAccounts value)? newListAccounts,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -589,6 +762,7 @@ class _$_Loading implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_NewListAccounts value)? newListAccounts,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -669,6 +843,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseCuentas listAccounts) loaded,
+    required TResult Function(ResponseCuentas listAccounts) newListAccounts,
     required TResult Function(String error) error,
   }) {
     return loaded(listAccounts);
@@ -680,6 +855,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseCuentas listAccounts)? loaded,
+    TResult? Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult? Function(String error)? error,
   }) {
     return loaded?.call(listAccounts);
@@ -691,6 +867,7 @@ class _$_Loaded implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseCuentas listAccounts)? loaded,
+    TResult Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -706,6 +883,7 @@ class _$_Loaded implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NewListAccounts value) newListAccounts,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -717,6 +895,7 @@ class _$_Loaded implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NewListAccounts value)? newListAccounts,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -728,6 +907,7 @@ class _$_Loaded implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_NewListAccounts value)? newListAccounts,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -744,6 +924,159 @@ abstract class _Loaded implements AccountsState {
   ResponseCuentas get listAccounts;
   @JsonKey(ignore: true)
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NewListAccountsCopyWith<$Res> {
+  factory _$$_NewListAccountsCopyWith(
+          _$_NewListAccounts value, $Res Function(_$_NewListAccounts) then) =
+      __$$_NewListAccountsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ResponseCuentas listAccounts});
+}
+
+/// @nodoc
+class __$$_NewListAccountsCopyWithImpl<$Res>
+    extends _$AccountsStateCopyWithImpl<$Res, _$_NewListAccounts>
+    implements _$$_NewListAccountsCopyWith<$Res> {
+  __$$_NewListAccountsCopyWithImpl(
+      _$_NewListAccounts _value, $Res Function(_$_NewListAccounts) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listAccounts = null,
+  }) {
+    return _then(_$_NewListAccounts(
+      null == listAccounts
+          ? _value.listAccounts
+          : listAccounts // ignore: cast_nullable_to_non_nullable
+              as ResponseCuentas,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NewListAccounts implements _NewListAccounts {
+  const _$_NewListAccounts(this.listAccounts);
+
+  @override
+  final ResponseCuentas listAccounts;
+
+  @override
+  String toString() {
+    return 'AccountsState.newListAccounts(listAccounts: $listAccounts)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NewListAccounts &&
+            (identical(other.listAccounts, listAccounts) ||
+                other.listAccounts == listAccounts));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, listAccounts);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NewListAccountsCopyWith<_$_NewListAccounts> get copyWith =>
+      __$$_NewListAccountsCopyWithImpl<_$_NewListAccounts>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(ResponseCuentas listAccounts) loaded,
+    required TResult Function(ResponseCuentas listAccounts) newListAccounts,
+    required TResult Function(String error) error,
+  }) {
+    return newListAccounts(listAccounts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(ResponseCuentas listAccounts)? loaded,
+    TResult? Function(ResponseCuentas listAccounts)? newListAccounts,
+    TResult? Function(String error)? error,
+  }) {
+    return newListAccounts?.call(listAccounts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(ResponseCuentas listAccounts)? loaded,
+    TResult Function(ResponseCuentas listAccounts)? newListAccounts,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (newListAccounts != null) {
+      return newListAccounts(listAccounts);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NewListAccounts value) newListAccounts,
+    required TResult Function(_Error value) error,
+  }) {
+    return newListAccounts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NewListAccounts value)? newListAccounts,
+    TResult? Function(_Error value)? error,
+  }) {
+    return newListAccounts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_NewListAccounts value)? newListAccounts,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (newListAccounts != null) {
+      return newListAccounts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NewListAccounts implements AccountsState {
+  const factory _NewListAccounts(final ResponseCuentas listAccounts) =
+      _$_NewListAccounts;
+
+  ResponseCuentas get listAccounts;
+  @JsonKey(ignore: true)
+  _$$_NewListAccountsCopyWith<_$_NewListAccounts> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -812,6 +1145,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ResponseCuentas listAccounts) loaded,
+    required TResult Function(ResponseCuentas listAccounts) newListAccounts,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -823,6 +1157,7 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ResponseCuentas listAccounts)? loaded,
+    TResult? Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -834,6 +1169,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ResponseCuentas listAccounts)? loaded,
+    TResult Function(ResponseCuentas listAccounts)? newListAccounts,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -849,6 +1185,7 @@ class _$_Error implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_NewListAccounts value) newListAccounts,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -860,6 +1197,7 @@ class _$_Error implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_NewListAccounts value)? newListAccounts,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -871,6 +1209,7 @@ class _$_Error implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_NewListAccounts value)? newListAccounts,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

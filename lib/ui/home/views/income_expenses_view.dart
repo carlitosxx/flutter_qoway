@@ -10,6 +10,7 @@ class IncomeExpensesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
+        print('POR AQUI ESTOY: $state');
         return state.maybeWhen(
           orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
           setAccount: (cuenta) => SliverList(

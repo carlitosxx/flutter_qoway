@@ -19,20 +19,25 @@ mixin _$TransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Movimiento transaction, AccountBloc accountBloc)
+    required TResult Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)
         clicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Movimiento transaction, AccountBloc accountBloc)? clicked,
+    TResult? Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)?
+        clicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Movimiento transaction, AccountBloc accountBloc)? clicked,
+    TResult Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)?
+        clicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +119,8 @@ class _$TransactionStarted implements TransactionStarted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Movimiento transaction, AccountBloc accountBloc)
+    required TResult Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)
         clicked,
   }) {
     return started();
@@ -124,7 +130,9 @@ class _$TransactionStarted implements TransactionStarted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Movimiento transaction, AccountBloc accountBloc)? clicked,
+    TResult? Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)?
+        clicked,
   }) {
     return started?.call();
   }
@@ -133,7 +141,9 @@ class _$TransactionStarted implements TransactionStarted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Movimiento transaction, AccountBloc accountBloc)? clicked,
+    TResult Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)?
+        clicked,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -184,7 +194,10 @@ abstract class _$$TransactionClickedCopyWith<$Res> {
           $Res Function(_$TransactionClicked) then) =
       __$$TransactionClickedCopyWithImpl<$Res>;
   @useResult
-  $Res call({Movimiento transaction, AccountBloc accountBloc});
+  $Res call(
+      {Movimiento transaction,
+      AccountBloc accountBloc,
+      AccountsBloc accountsBloc});
 }
 
 /// @nodoc
@@ -199,17 +212,22 @@ class __$$TransactionClickedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transaction = null,
-    Object? accountBloc = freezed,
+    Object? accountBloc = null,
+    Object? accountsBloc = null,
   }) {
     return _then(_$TransactionClicked(
       null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
               as Movimiento,
-      freezed == accountBloc
+      null == accountBloc
           ? _value.accountBloc
           : accountBloc // ignore: cast_nullable_to_non_nullable
               as AccountBloc,
+      null == accountsBloc
+          ? _value.accountsBloc
+          : accountsBloc // ignore: cast_nullable_to_non_nullable
+              as AccountsBloc,
     ));
   }
 }
@@ -217,16 +235,19 @@ class __$$TransactionClickedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TransactionClicked implements TransactionClicked {
-  const _$TransactionClicked(this.transaction, this.accountBloc);
+  const _$TransactionClicked(
+      this.transaction, this.accountBloc, this.accountsBloc);
 
   @override
   final Movimiento transaction;
   @override
   final AccountBloc accountBloc;
+  @override
+  final AccountsBloc accountsBloc;
 
   @override
   String toString() {
-    return 'TransactionEvent.clicked(transaction: $transaction, accountBloc: $accountBloc)';
+    return 'TransactionEvent.clicked(transaction: $transaction, accountBloc: $accountBloc, accountsBloc: $accountsBloc)';
   }
 
   @override
@@ -236,13 +257,15 @@ class _$TransactionClicked implements TransactionClicked {
             other is _$TransactionClicked &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction) &&
-            const DeepCollectionEquality()
-                .equals(other.accountBloc, accountBloc));
+            (identical(other.accountBloc, accountBloc) ||
+                other.accountBloc == accountBloc) &&
+            (identical(other.accountsBloc, accountsBloc) ||
+                other.accountsBloc == accountsBloc));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, transaction,
-      const DeepCollectionEquality().hash(accountBloc));
+  int get hashCode =>
+      Object.hash(runtimeType, transaction, accountBloc, accountsBloc);
 
   @JsonKey(ignore: true)
   @override
@@ -255,30 +278,35 @@ class _$TransactionClicked implements TransactionClicked {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(Movimiento transaction, AccountBloc accountBloc)
+    required TResult Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)
         clicked,
   }) {
-    return clicked(transaction, accountBloc);
+    return clicked(transaction, accountBloc, accountsBloc);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(Movimiento transaction, AccountBloc accountBloc)? clicked,
+    TResult? Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)?
+        clicked,
   }) {
-    return clicked?.call(transaction, accountBloc);
+    return clicked?.call(transaction, accountBloc, accountsBloc);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(Movimiento transaction, AccountBloc accountBloc)? clicked,
+    TResult Function(Movimiento transaction, AccountBloc accountBloc,
+            AccountsBloc accountsBloc)?
+        clicked,
     required TResult orElse(),
   }) {
     if (clicked != null) {
-      return clicked(transaction, accountBloc);
+      return clicked(transaction, accountBloc, accountsBloc);
     }
     return orElse();
   }
@@ -317,11 +345,13 @@ class _$TransactionClicked implements TransactionClicked {
 
 abstract class TransactionClicked implements TransactionEvent {
   const factory TransactionClicked(
-          final Movimiento transaction, final AccountBloc accountBloc) =
-      _$TransactionClicked;
+      final Movimiento transaction,
+      final AccountBloc accountBloc,
+      final AccountsBloc accountsBloc) = _$TransactionClicked;
 
   Movimiento get transaction;
   AccountBloc get accountBloc;
+  AccountsBloc get accountsBloc;
   @JsonKey(ignore: true)
   _$$TransactionClickedCopyWith<_$TransactionClicked> get copyWith =>
       throw _privateConstructorUsedError;

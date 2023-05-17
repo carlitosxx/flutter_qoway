@@ -7,6 +7,7 @@ import 'package:qoway/ui/add_transaction/bloc/transaction/transaction_bloc.dart'
 import 'package:qoway/ui/common/widgets/button.dart';
 import 'package:qoway/ui/common/widgets/my_textfield.dart';
 import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
+import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AddTransactionPhoneView extends StatefulWidget {
@@ -217,8 +218,13 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
                     idCuenta: int.parse(widget.accountId),
                   );
                   final accountBloc = BlocProvider.of<AccountBloc>(context);
+                  final accountsBloc = BlocProvider.of<AccountsBloc>(context);
                   context.read<TransactionBloc>().add(
-                        TransactionEvent.clicked(transaction, accountBloc),
+                        TransactionEvent.clicked(
+                          transaction,
+                          accountBloc,
+                          accountsBloc,
+                        ),
                       );
                   Navigator.pop(context);
                 } catch (e) {

@@ -23,6 +23,11 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
         );
       },
     );
+    on<Updated>(
+      (event, emit) {
+        return emit(AccountsState.newListAccounts(event.listAccounts));
+      },
+    );
   }
   final AccountsUC _accountsUC;
 }

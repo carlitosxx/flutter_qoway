@@ -100,6 +100,48 @@ class SelectAccountView extends StatelessWidget {
                       )
                     ]),
                   ),
+                  newListAccounts: (listAccounts) => SliverList(
+                    delegate: SliverChildListDelegate([
+                      ListTile(
+                        onTap: () {
+                          context.read<AccountBloc>().add(
+                                AccountEvent.loaded(
+                                  Cuentas(
+                                    descripcion: l10n.total,
+                                    total: listAccounts.total,
+                                    movimientos: [],
+                                    estaIncluido: 0,
+                                    id: 0,
+                                  ),
+                                ),
+                              );
+                          Navigator.of(context).pop();
+                        },
+                        title: Text(l10n.total),
+                        subtitle: Text(
+                          l10n.subtitleOfListTileTotal,
+                        ),
+                        trailing: Text(listAccounts.total.toString()),
+                      ),
+                      ...listAccounts.data.map(
+                        (e) => ListTile(
+                          onTap: () {
+                            context
+                                .read<AccountBloc>()
+                                .add(AccountEvent.loaded(e));
+                            Navigator.of(context).pop();
+                          },
+                          title: Text(e.descripcion),
+                          subtitle: Text(
+                            (e.estaIncluido == 1)
+                                ? l10n.allowedSummation
+                                : l10n.notAllowedSummation,
+                          ),
+                          trailing: Text(e.total.toString()),
+                        ),
+                      )
+                    ]),
+                  ),
                 );
               },
             )

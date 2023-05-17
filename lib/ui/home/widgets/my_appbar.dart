@@ -189,7 +189,9 @@ class ComboBox extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         BlocListener<AccountsBloc, AccountsState>(
+          listenWhen: (previous, current) => current != previous,
           listener: (context, state) {
+            // print('PASANDO POR DONDE NO DEBERIA PASAR 2 VECES');
             state.maybeWhen(
               orElse: () => const SizedBox.shrink(),
               loaded: (cuenta) => context.read<AccountBloc>().add(

@@ -6,5 +6,6 @@ class TransactionEvent with _$TransactionEvent {
   const factory TransactionEvent.clicked(
     Movimiento transaction,
     AccountBloc accountBloc,
+    AccountsBloc accountsBloc,
   ) = TransactionClicked;
 }
