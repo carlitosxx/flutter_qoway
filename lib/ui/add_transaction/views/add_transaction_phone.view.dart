@@ -206,22 +206,31 @@ class _AddTransactionPhoneViewState extends State<AddTransactionPhoneView> {
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: ButtonWidget(
               onButtonClick: () {
-                //TODO:
-                final movimiento = Movimiento(
-                  tipoMovimiento: tipoTransaccion,
-                  monto: (tipoTransaccion == 1)
-                      ? double.parse(controllerAmount.text)
-                      : double.parse(controllerAmount.text) * -1,
-                  fecha: _selectedDay.millisecondsSinceEpoch,
-                  comentario: controllerComment.text,
-                  idCuenta: int.parse(widget.accountId),
-                );
-                final accountBloc = BlocProvider.of<AccountBloc>(context);
-                context.read<TransactionBloc>().add(
-                      TransactionEvent.clicked(movimiento, accountBloc),
-                    );
-
-                Navigator.pop(context);
+                try {
+                  final transaction = Movimiento(
+                    tipoMovimiento: tipoTransaccion,
+                    monto: (tipoTransaccion == 1)
+                        ? double.parse(controllerAmount.text)
+                        : double.parse(controllerAmount.text) * -1,
+                    fecha: _selectedDay.millisecondsSinceEpoch,
+                    comentario: controllerComment.text,
+                    idCuenta: int.parse(widget.accountId),
+                  );
+                  final accountBloc = BlocProvider.of<AccountBloc>(context);
+                  context.read<TransactionBloc>().add(
+                        TransactionEvent.clicked(transaction, accountBloc),
+                      );
+                  Navigator.pop(context);
+                } catch (e) {
+                  final snackBar = SnackBar(
+                    content: Text(l10n.completeFieldsEmpty),
+                    action: SnackBarAction(
+                      label: l10n.labelCloseSnackBar,
+                      onPressed: () {},
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               },
               text: l10n.add,
             ),

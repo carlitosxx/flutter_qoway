@@ -36,6 +36,7 @@
     "enterComment":"Enter a comment",
     "enterAmount":"Enter amount",
     "add":"Add",
+    "completeFieldsEmpty":"Don't leave empty fields", 
     "january":"Jan",
     "february":"Feb",
     "march":"Mar",

@@ -199,7 +199,7 @@ class ComboBox extends StatelessWidget {
                         descripcion: l10n.total,
                         movimientos: [],
                         estaIncluido: 0,
-                        total: cuenta.data[0].total,
+                        total: cuenta.total,
                       ),
                     ),
                   ),

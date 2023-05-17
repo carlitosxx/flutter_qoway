@@ -172,7 +172,7 @@ class Db {
       movimiento.comentario 
       FROM cuenta
          LEFT JOIN movimiento ON movimiento.idCuenta=cuenta.id
-         WHERE "idUsuario"=? ORDER BY cuenta.id
+         WHERE "idUsuario"=? ORDER BY movimiento.fecha DESC
       ''',
       [id],
     );

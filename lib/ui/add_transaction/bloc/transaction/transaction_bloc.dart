@@ -24,16 +24,15 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         right: (id) {
           final copyTransaction = event.transaction.copyWith(idMovimiento: id);
           final accountState = event.accountBloc.state;
-
           final account = accountState.whenOrNull(
             setNewAccount: (account) => account,
-            reloadAccount: (account) => account,
+            // reloadAccount: (account) => account,
           );
           final accountCopy = account!.copyWith(
             total: account.total! + event.transaction.monto,
-            movimientos: [...account.movimientos, copyTransaction],
+            movimientos: [copyTransaction, ...account.movimientos],
           );
-          event.accountBloc.add(Reloaded(accountCopy));
+          event.accountBloc.add(Loaded(accountCopy));
           return emit(TransactionState.success(id));
         },
       );
