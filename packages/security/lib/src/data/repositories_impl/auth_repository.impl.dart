@@ -1,3 +1,6 @@
+import 'package:core/core.dart';
+import 'package:database/database.dart';
+import 'package:security/src/data/datasources/local/get_user_by_id.datasource.dart';
 import 'package:security/src/data/datasources/local/login.datasource.dart';
 import 'package:security/src/data/datasources/local/register.datasource.dart';
 import 'package:security/src/data/datasources/local/secure_store.datasource.dart';
@@ -10,6 +13,7 @@ class AuthRepositoryImpl implements AuthRepository {
     this._loginDataSource,
     this._registerDataSource,
     this._secureStoreDataSource,
+    this._getUserByIdDataSource,
   );
 
   /// propiedad DataSource login
@@ -20,6 +24,9 @@ class AuthRepositoryImpl implements AuthRepository {
 
   /// propiedad DataSource SecureStore
   final SecureStoreDataSource _secureStoreDataSource;
+
+  /// propiedad DataSource GetUserById
+  final GetUserByIdDataSource _getUserByIdDataSource;
 
   @override
   LoginFuture getLogin(String email, String password) async {
@@ -75,5 +82,12 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> deleteValueFromSecureStore(String keySecureStore) {
     return _secureStoreDataSource.deleteValueFromSecureStore(keySecureStore);
+  }
+
+  @override
+  Future<Either<HttpRequestFailure, List<Usuario>>> getUserById(
+    String id,
+  ) {
+    return _getUserByIdDataSource.getUserById(id);
   }
 }

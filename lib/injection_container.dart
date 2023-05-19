@@ -8,6 +8,7 @@ import 'package:qoway/ui/add_transaction/bloc/transaction/transaction_bloc.dart'
 import 'package:qoway/ui/currency/bloc/currency_bloc.dart';
 import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
+import 'package:qoway/ui/home/bloc/user/user_bloc.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
 import 'package:qoway/ui/register/bloc/register/register_bloc.dart';
@@ -25,6 +26,7 @@ Future<void> init() async {
   sl.registerFactory(() => AccountsBloc(sl()));
   sl.registerFactory(AccountBloc.new);
   sl.registerFactory(() => TransactionBloc(sl()));
+  sl.registerFactory(() => UserBloc(sl()));
 
   /// Casos de Uso
   sl.registerLazySingleton(() => LoginUC(sl()));
@@ -34,10 +36,11 @@ Future<void> init() async {
   sl.registerLazySingleton(() => DeleteValueFromSecureStore(sl()));
   sl.registerLazySingleton(() => AccountsUC(sl()));
   sl.registerLazySingleton(() => TransactionUC(sl()));
+  sl.registerLazySingleton(() => GetUserByIdUC(sl()));
 
   /// Repositorios
   sl.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(sl(), sl(), sl()),
+    () => AuthRepositoryImpl(sl(), sl(), sl(), sl()),
   );
   sl.registerLazySingleton<CurrencyRepository>(
     () => CurrencyRepositoryImpl(sl()),
@@ -56,6 +59,9 @@ Future<void> init() async {
     () => CurrencyDataSourceImpl(
       sl(),
     ),
+  );
+  sl.registerLazySingleton<GetUserByIdDataSource>(
+    () => GetUserByIdDataSourceImpl(sl()),
   );
 
   /// Librerias externas

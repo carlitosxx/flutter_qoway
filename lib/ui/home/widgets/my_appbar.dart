@@ -6,6 +6,7 @@ import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/skeleton/text_a.skelton.dart';
 import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
+import 'package:qoway/ui/home/bloc/user/user_bloc.dart';
 
 class MyAppBar extends StatefulWidget {
   const MyAppBar({
@@ -128,6 +129,17 @@ class PersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
                           ? MainAxisAlignment.center
                           : MainAxisAlignment.start,
                       children: [
+                        BlocBuilder<UserBloc, UserState>(
+                          builder: (context, state) {
+                            return state.when(
+                              error: Text.new,
+                              initial: () => const Text(''),
+                              loadUser: (user) =>
+                                  Text('${user.simboloDivisa} '),
+                            );
+                            // return Text('helow');
+                          },
+                        ),
                         BlocBuilder<AccountBloc, AccountState>(
                           builder: (context, state) {
                             return state.maybeWhen(

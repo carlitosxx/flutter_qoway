@@ -21,7 +21,7 @@ class Usuario {
     return Usuario(
       nombre: map['nombre'] as String,
       correo: map['correo'] as String,
-      descDivisa: map['descdivisa'] as String,
+      descDivisa: map['descDivisa'] as String,
       cortoDivisa: map['cortoDivisa'] as String,
       simboloDivisa: map['simboloDivisa'] as String,
       ladoDivisa: map['ladoDivisa'] as int,

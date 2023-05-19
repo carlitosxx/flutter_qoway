@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:database/database.dart';
 
 /// tipo de dato, puede retornar htttprequestFailure o Lista de map string
 /// dynamic
@@ -24,9 +25,12 @@ abstract class AuthRepository {
     int sideCurrency,
   );
 
-  /// interfaz
+  /// interfaz para obtener el userId del secure store
   Future<String> getUserIdOfSecureStore(String keySecureStore);
 
-  /// interfaz
+  /// interfaz para borrar un valor del secureStore
   Future<void> deleteValueFromSecureStore(String keySecureStore);
+
+  /// interfaz para obtener el usuario segun id
+  Future<Either<HttpRequestFailure, List<Usuario>>> getUserById(String id);
 }

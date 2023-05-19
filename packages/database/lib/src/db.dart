@@ -21,17 +21,20 @@ class Db {
   }
 
   static Future<void> _onCreate(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE actividad(
           id INTEGER
         );       
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         INSERT INTO actividad(id)
         values(0);
       ''');
 
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE usuario(
           id INTEGER PRIMARY KEY ,
           nombre TEXT,
@@ -42,7 +45,8 @@ class Db {
           simboloDivisa TEXT,
           ladoDivisa INTEGER);       
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE cuenta(
           id INTEGER PRIMARY KEY,
           descripcion TEXT,
@@ -50,7 +54,8 @@ class Db {
           idUsuario INTEGER,
           FOREIGN KEY(idUsuario) REFERENCES usuario(id));          
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE movimiento(
           id INTEGER PRIMARY KEY,
           tipoMovimiento INTEGER,
@@ -61,7 +66,8 @@ class Db {
           FOREIGN KEY(idCuenta) REFERENCES cuenta(id)
           );
       ''');
-    await db.execute('''
+    await db.execute(
+        '''
         CREATE TABLE divisa(
           id INTEGER PRIMARY KEY,
           descDivisa TEXT,
@@ -69,7 +75,8 @@ class Db {
           simboloDivisa TEXT,
           ladoDivisa INTEGER);
       ''');
-    await db.execute(r'''
+    await db.execute(
+        r'''
         INSERT INTO divisa(descDivisa,cortoDivisa,simboloDivisa,ladoDivisa)
         values
         ('Boliviano','BOB','Bs.',1),
@@ -157,7 +164,9 @@ class Db {
       whereArgs: [int.parse(userId)],
       limit: 1,
     );
-    return fromListMapToListUser(user);
+    final response = fromListMapToListUser(user);
+
+    return response;
   }
 
   ///OBTENER LISTA DE DIVISAS

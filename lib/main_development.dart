@@ -6,6 +6,7 @@ import 'package:qoway/injection_container.dart' as di;
 import 'package:qoway/ui/currency/bloc/currency_bloc.dart';
 import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
 import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
+import 'package:qoway/ui/home/bloc/user/user_bloc.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 import 'package:qoway/ui/register/bloc/currency/currency_set_bloc.dart';
 import 'package:qoway/ui/register/bloc/register/register_bloc.dart';
@@ -30,6 +31,9 @@ void main() {
         ),
         BlocProvider(
           create: (_) => di.sl<AccountBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.sl<UserBloc>(),
         ),
       ],
       child: const App(),

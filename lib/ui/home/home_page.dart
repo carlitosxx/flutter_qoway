@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:qoway/ui/home/bloc/account/account_bloc.dart' as acc;
 import 'package:qoway/ui/home/bloc/accounts/accounts_bloc.dart';
+import 'package:qoway/ui/home/bloc/user/user_bloc.dart';
 import 'package:qoway/ui/home/views/home_view_phone.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
      * * las vistas para telefono,tablet y escritorio 
     */
     context.read<AccountsBloc>().add(Loaded(int.parse(userId)));
+    context.read<UserBloc>().add(UserEvent.loaded(userId));
 
     return HomeViewPhone(
       userId: userId,
