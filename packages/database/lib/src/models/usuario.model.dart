@@ -1,3 +1,7 @@
+/// transforma una lista de mapas a una lista de Usuarios
+List<Usuario> fromListMapToListUser(List<Map<String, dynamic>> listmap) =>
+    listmap.map(Usuario.fromMap).toList();
+
 /// Clase Usuario
 class Usuario {
   /// Constructor
@@ -11,6 +15,18 @@ class Usuario {
     this.simboloDivisa,
     this.ladoDivisa,
   });
+
+  /// fabricador de Usuarios de Map
+  factory Usuario.fromMap(Map<String, dynamic> map) {
+    return Usuario(
+      nombre: map['nombre'] as String,
+      correo: map['correo'] as String,
+      descDivisa: map['descdivisa'] as String,
+      cortoDivisa: map['cortoDivisa'] as String,
+      simboloDivisa: map['simboloDivisa'] as String,
+      ladoDivisa: map['ladoDivisa'] as int,
+    );
+  }
 
   /// id
   int? id;

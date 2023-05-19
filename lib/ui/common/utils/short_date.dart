@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qoway/l10n/l10n.dart';
 
 String shortMonth(int dateUnix, BuildContext context) {
-  final fecha =
-      DateTime.fromMillisecondsSinceEpoch(dateUnix, isUtc: false).toString();
+  final fecha = DateTime.fromMillisecondsSinceEpoch(dateUnix).toString();
   final month = int.parse(fecha.substring(5, 7));
   final l10n = context.l10n;
   switch (month) {
@@ -37,8 +36,7 @@ String shortMonth(int dateUnix, BuildContext context) {
 }
 
 String dayOfMonth(int dateUnix) {
-  final fecha =
-      DateTime.fromMillisecondsSinceEpoch(dateUnix, isUtc: false).toString();
+  final fecha = DateTime.fromMillisecondsSinceEpoch(dateUnix).toString();
   final day = fecha.substring(8, 10);
   return day;
 }

@@ -29,10 +29,8 @@ class SplashView extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        log(state.toString());
         return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          // error: () {},
           initial: () => Scaffold(
             body: Center(child: SvgPicture.asset(assetName)),
           ),

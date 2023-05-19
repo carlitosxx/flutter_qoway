@@ -44,7 +44,6 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           );
           final data = accounts!.data.map((element) {
             if (element.id == account.id) {
-              print('pase por aqui');
               element = accountCopy;
             }
             return element;

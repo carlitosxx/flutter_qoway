@@ -31,7 +31,6 @@ void main() {
         BlocProvider(
           create: (_) => di.sl<AccountBloc>(),
         ),
-        // BlocProvider(create: (_) => di.sl<TransactionBloc>()),
       ],
       child: const App(),
     );

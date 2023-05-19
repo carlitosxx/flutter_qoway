@@ -4,6 +4,7 @@ import 'package:database/src/models/cuenta.model.dart';
 import 'package:database/src/models/cuentas.model.dart';
 import 'package:database/src/models/movimiento.model.dart';
 import 'package:database/src/models/response_cuentas.model.dart';
+import 'package:database/src/models/usuario.model.dart';
 // import 'package:database/src/models/movimiento.model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
@@ -82,7 +83,6 @@ class Db {
   static Future<Database> _openDB() async {
     // final documentsDirectory = await getApplicationDocumentsDirectory();
     // final path = join(documentsDirectory.path, 'qoway.db');
-
     return openDatabase(
       join(await getDatabasesPath(), 'qoway.db'),
       onCreate: _onCreate,
@@ -144,6 +144,20 @@ class Db {
       whereArgs: [email, clave],
       limit: 1,
     );
+  }
+
+  /// Obtener usuario por id
+  Future<List<Usuario>> getUserByUserId(
+    String userId,
+  ) async {
+    final database = await _openDB();
+    final user = await database.query(
+      'usuario',
+      where: 'id=?',
+      whereArgs: [int.parse(userId)],
+      limit: 1,
+    );
+    return fromListMapToListUser(user);
   }
 
   ///OBTENER LISTA DE DIVISAS

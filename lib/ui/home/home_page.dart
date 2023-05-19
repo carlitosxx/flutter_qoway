@@ -13,9 +13,8 @@ class HomePage extends StatelessWidget {
      * * (carlitosxx): Se necesita agregar la validacion de la plataforma y
      * * las vistas para telefono,tablet y escritorio 
     */
-
     context.read<AccountsBloc>().add(Loaded(int.parse(userId)));
-    // context.read<acc.AccountBloc>().add(const acc.Started());
+
     return HomeViewPhone(
       userId: userId,
     );

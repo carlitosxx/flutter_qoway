@@ -6,8 +6,8 @@ import 'package:qoway/l10n/l10n.dart';
 import 'package:qoway/ui/common/widgets/button.dart';
 import 'package:qoway/ui/login/bloc/login_bloc.dart';
 
-class CustomButtoWidget extends StatelessWidget {
-  const CustomButtoWidget({
+class CustomButtonWidget extends StatelessWidget {
+  const CustomButtonWidget({
     super.key,
     required this.text,
     required this.emailController,

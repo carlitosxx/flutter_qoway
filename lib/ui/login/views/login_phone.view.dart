@@ -57,7 +57,7 @@ class LoginPhoneView extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.fromLTRB(30, 7, 30, 0),
                         width: double.infinity,
-                        child: CustomButtoWidget(
+                        child: CustomButtonWidget(
                           text: l10n.textButtomLogin,
                           emailController: email,
                           passwordController: password,
