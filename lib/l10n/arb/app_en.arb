@@ -48,5 +48,10 @@
     "september":"Sep",
     "october":"Oct",
     "november":"Nov",
-    "december":"Dec"
+    "december":"Dec",
+    "doYouWantToDelete":"Confirm delete?",
+    "description":"Description",
+    "amount":"Amount",
+    "delete":"Delete",
+    "cancel":"Cancel"
 }

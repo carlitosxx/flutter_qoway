@@ -10,13 +10,12 @@ class HomePage extends StatelessWidget {
   final String userId;
   @override
   Widget build(BuildContext context) {
+    context.read<UserBloc>().add(UserEvent.loaded(userId));
+    context.read<AccountsBloc>().add(Loaded(int.parse(userId)));
     /**
      * * (carlitosxx): Se necesita agregar la validacion de la plataforma y
      * * las vistas para telefono,tablet y escritorio 
     */
-    context.read<AccountsBloc>().add(Loaded(int.parse(userId)));
-    context.read<UserBloc>().add(UserEvent.loaded(userId));
-
     return HomeViewPhone(
       userId: userId,
     );

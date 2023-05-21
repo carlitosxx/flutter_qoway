@@ -22,7 +22,6 @@ class GetUserByIdDataSourceImpl extends GetUserByIdDataSource {
   ) async {
     try {
       final response = await sqlite.getUserByUserId(userId);
-      print(response);
       if (response.isNotEmpty) {
         return Either.right(response);
       }

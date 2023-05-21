@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoway/ui/home/bloc/account/account_bloc.dart';
-import 'package:qoway/ui/home/views/expenses_view.dart';
+// import 'package:qoway/ui/home/views/expenses_view.dart';
 import 'package:qoway/ui/home/views/income_expenses_view.dart';
 import 'package:qoway/ui/home/widgets/my_appbar.dart';
 import 'package:qoway/ui/home/widgets/my_drawer.dart';
@@ -17,11 +17,11 @@ class HomeViewPhone extends StatefulWidget {
 class _HomeViewPhoneState extends State<HomeViewPhone> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  int screnIndex = 0;
-  List<Widget> screens = [
-    const IncomeExpensesView(),
-    const ExpensesView(),
-  ];
+  // int screnIndex = 0;
+  // List<Widget> screens = [
+  //   const IncomeExpensesView(),
+
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,8 @@ class _HomeViewPhoneState extends State<HomeViewPhone> {
             resizeToAvoidBottomInset: false,
             key: scaffoldKey,
             drawer: const MyDrawer(),
-            body: CustomScrollView(
-              slivers: [const MyAppBar(), screens[screnIndex]],
+            body: const CustomScrollView(
+              slivers: [MyAppBar(), IncomeExpensesView()],
             ),
             floatingActionButton: BlocBuilder<AccountBloc, AccountState>(
               builder: (context, state) {
